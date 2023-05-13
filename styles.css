@@ -1,0 +1,21 @@
+
+body{
+    background-color: rgb(210, 217, 226);
+}
+
+#user{
+    width: 700px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: rgb(187, 199, 218);
+    color: rgb(0, 58, 138);
+}
+
+::placeholder{
+    color: rgb(0, 58, 138);
+}
+
+#button{
+    height: 45px;
+    border-radius: 6px;
+}
