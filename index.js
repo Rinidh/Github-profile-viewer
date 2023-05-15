@@ -17,7 +17,7 @@ const img = document.getElementById("img")
 
 
 const octoki = new Octokit({ 
-  auth: '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',
+  auth: 'YOUR AUTH TOKEN',
 });
 
 async function fetcher(username) {
