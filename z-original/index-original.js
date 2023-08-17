@@ -1,5 +1,7 @@
 
-import { Octokit } from "https://cdn.skypack.dev/octokit";
+import { Octokit } from "https://esm.sh/octokit";
+//https://cdn.skypack.dev/octokit
+//https://cdnjs.cloudflare.com/ajax/libs/rest.js/15.2.6/octokit-rest.min.js
 
 const button = document.getElementById("button")
 const user = document.getElementById("user")
@@ -17,7 +19,7 @@ const img = document.getElementById("img")
 
 
 const octoki = new Octokit({ 
-  auth: 'YOUR AUTH TOKEN',
+  auth: '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',
 });
 
 async function fetcher(username) {
@@ -56,3 +58,4 @@ button.addEventListener("click", ()=>{fetcher(user.value)})
 
 //axios.get("https://api.github.com/repos/Rinidh/Pomodoro-timer").then((res)=>console.log(res.data))
 //the above method doesn't work any longer, use the oktokit library now
+

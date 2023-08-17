@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Profile Viewer</title>
+    <link rel="stylesheet" href="styles-original.css">
+</head>
+<body>
+    <h1><center>Github Profile Viewer</center></h1>
+    <p><center>This mini web app accepts the Github-user-name and returns profile info</center></p>
+    <hr width="1000" color="black"><!--style="height: 1px;"-->
+
+    <center>
+        <input type="text" id="user" placeholder="Github User Name"><button id="button">Show Profile</button>
+    </center>
+
+    <h1><u>Name</u></h1>
+    <br>
+    <h2 id="name"></h2>
+    <hr><br>
+
+    <h1><u>Profile picture</u></h1>
+    <br>
+    <div id="img"></div>
+    <hr><br>
+
+    <h1><u>Date of creation</u></h1>
+    <br>
+    <h2 id="created-at"></h2>
+    <hr><br>
+
+    <h1><u>Biography</u></h1>
+    <br>
+    <h2 id="bio"></h2>
+    <hr><br>
+
+    <h1><u>Follow-info</u></h1>
+    <br>
+    <ul>
+        <h1><u>Followers</u></h1>
+        <br>    
+        <h2><li id="followers"></li></h2>
+        <h1><u>Following</u></h1>
+        <br>    
+        <h2><li id="following"></li></h2>
+    </ul>
+    <hr><br>
+
+    <h1><u>Number of public repos</u></h1>
+    <br>
+    <h2 id="public-repos"></h2>
+    <hr><br>
+
+    <h1><u>Twitter Id</u></h1>
+    <br>
+    <h2 id="twitter"></h2>
+    <hr><br>
+
+    <h1><u>Visit</u></h1>
+    <br>
+    <h2><a id="html-url" target="_blank"></a></h2>
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script> --> <!--axios not needed due to new way using oktokit-->
+    <script type="module" src="index-original.js"></script><!--type needs to be "module" if wanna use "import" stmt-->
+</body>
+</html>
