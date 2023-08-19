@@ -1,0 +1,1 @@
+Install chakra ui and apply the base provider

@@ -1,0 +1,9 @@
+const { colorMode, toggleColorMode } = useColorMode();
+<Button onClick={toggleColorMode} colorScheme="blue">
+  Toggle {colorMode === "light" ? "Dark" : "Light"}
+</Button>
+
+
+embed a map with <AspectRatio>
+
+
