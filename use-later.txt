@@ -3,7 +3,16 @@ const { colorMode, toggleColorMode } = useColorMode();
   Toggle {colorMode === "light" ? "Dark" : "Light"}
 </Button>
 
-
 embed a map with <AspectRatio>
 
+truncate <Text> with noOfLines
 
+<Text as='b'>Bold</Text>
+
+Google fonts: kanit:
+Thin 100 Italic
+Light 300
+Light 300 Italic
+Regular 400
+
+as={Link}
