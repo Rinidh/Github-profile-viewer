@@ -16,3 +16,25 @@ Light 300 Italic
 Regular 400
 
 as={Link}
+
+RangeSlider
+
+RadioGroup
+
+how to make the icons bigger
+
+<GridItem> // in the users grid ??
+  <Box
+    h={"100px"}
+    w={"1200px"}
+    bgColor={"green.300"}
+    borderLeftColor={"blue.600"}
+    my={5}
+    borderRadius={10}
+    borderWidth={2}
+  ></Box>
+</GridItem>
+
+x-ratelimit-remainin
+
+the X to clear the input box

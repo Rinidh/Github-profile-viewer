@@ -24,9 +24,7 @@ const octoki = new Octokit({
 
 async function fetcher(username) {
   let {data} = await octoki.request(`GET /users/${username}`, {
-    owner: "github",
-    repo: "docs",
-    per_page: 2 //all these params don't matter much in this case
+    owner: username
   });
   console.log(data)
   // await octoki.request("GET /repos/Rinidh/Gen-and-Itr", {  //Gen-and-Itr //making request to the "repos" instead of "users"

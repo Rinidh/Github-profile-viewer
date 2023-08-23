@@ -20,9 +20,15 @@ const SearchInput = function ({ onSearch }: Props) {
         <InputLeftElement children={<BsSearch />} />
         <Input
           ref={ref}
-          borderRadius={20}
-          placeholder="Search Games..."
+          borderRadius={10}
+          placeholder="User name"
           variant={"filled"}
+          errorBorderColor={"purple"}
+          size={"md"}
+          maxWidth={"800px"}
+          borderColor={"ActiveBorder"}
+          focusBorderColor="green.400"
+          _placeholder={{ opacity: 1, color: "gray" }}
         ></Input>
       </InputGroup>
     </form>
