@@ -18,12 +18,12 @@ const html_url = document.getElementById("html-url")
 const img = document.getElementById("img")
 
 
-const octoki = new Octokit({ 
+const octokit = new Octokit({ 
   auth: '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',
 });
 
 async function fetcher(username) {
-  let {data} = await octoki.request(`GET /users/${username}`, {
+  let {data} = await octokit.request(`GET /users/${username}`, {
     owner: username
   });
   console.log(data)

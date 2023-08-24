@@ -27,7 +27,7 @@ function App() {
       }}
       gridTemplateColumns={{
         base: "1fr",
-        lg: "100px 1fr",
+        lg: "210px 1fr",
       }}
     >
       <GridItem pt="1" area={"header"} p={3}>
@@ -44,7 +44,7 @@ function App() {
       </Show>
       <GridItem pl="2" area={"main"} p={10}>
         <Box minHeight="540px" py={10}>
-          <UsersGrid />
+          <UsersGrid searchText={userQuery.searchText} />
         </Box>
       </GridItem>
       <GridItem pl="2" bg="blue.300" area={"footer"}>

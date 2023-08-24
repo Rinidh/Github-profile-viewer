@@ -38,3 +38,15 @@ how to make the icons bigger
 x-ratelimit-remainin
 
 the X to clear the input box
+
+turn useUsers to ts
+
+noOfLines={1} in heading and text
+
+Textarea
+
+variant = filled on user grid
+
+Avatar in left panel
+
+implement the searching action

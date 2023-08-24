@@ -19,6 +19,7 @@ import logo from "../assets/Github-logo.png";
 import { BsLightbulbFill } from "react-icons/bs";
 import { BsMoonFill } from "react-icons/bs";
 import SearchInput from "./SearchInput";
+import About from "./About";
 
 interface Props {
   onSearch: (searchText: string) => void;
@@ -31,7 +32,7 @@ const Header = ({ onSearch }: Props) => {
 
   return (
     <>
-      <Flex minWidth="max-content" flexDirection={"row"}>
+      <Flex flexDirection={"row"}>
         <LinkBox as="div" maxW="sm">
           <LinkOverlay
             href="" /* blank href causes page reload while href='#' causes default scroll to top */
@@ -51,6 +52,7 @@ const Header = ({ onSearch }: Props) => {
           <SearchInput onSearch={onSearch} />
         </Box>
         <HStack alignItems={"center"}>
+          <About />
           <BsLightbulbFill />
           <Switch
             colorScheme="blue"
