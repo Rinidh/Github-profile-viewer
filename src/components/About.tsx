@@ -22,7 +22,7 @@ function About() {
         size={"lg"}
       />
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInBottom">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>About this App</ModalHeader>

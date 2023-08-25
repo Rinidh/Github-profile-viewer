@@ -4,3 +4,7 @@
   font-size: 40px;
   white-space: nowrap;
 }
+
+* {
+  font-family: "kanit";
+}

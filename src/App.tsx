@@ -3,8 +3,10 @@ import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
 import Header from "./components/Header";
 import "./App.css";
 import Form from "./components/Form";
-import UsersGrid from "./components/UsersGrid";
+import UsersGrid from "./components/UserProfile";
 import { useState } from "react";
+import BlankGrid from "./components/BlankProfile";
+import "./App.css";
 
 interface UserQuery {
   searchText: string;
@@ -44,7 +46,10 @@ function App() {
       </Show>
       <GridItem pl="2" area={"main"} p={10}>
         <Box minHeight="540px" py={10}>
-          <UsersGrid searchText={userQuery.searchText} />
+          {!userQuery.searchText && <BlankGrid />}
+          {userQuery.searchText && (
+            <UsersGrid searchText={userQuery.searchText} />
+          )}
         </Box>
       </GridItem>
       <GridItem pl="2" bg="blue.300" area={"footer"}>

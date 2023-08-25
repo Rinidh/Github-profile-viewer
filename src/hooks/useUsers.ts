@@ -11,11 +11,13 @@ export interface User {
   twitter_username: string,
   html_url: string,
   created_at: string,
+  login: string
 }
 
 
 function useUsers(searchText:string) {
   const [user, setUser] = useState<User>({} as User);
+  const [isLoading, setLoading] = useState(false)
 
   useEffect(() => {
     const octokit = new Octokit({
@@ -23,23 +25,27 @@ function useUsers(searchText:string) {
     });
 
     if(searchText) {
+      setLoading(true)
+
       octokit
-      .request(`GET /users/rinidh`, { //`GET /users/${searchText}`
+      .request(`GET /users/${searchText}`, { 
         owner: "abc",
       })
       .then((res) => {
         setUser(res.data);
+        setLoading(false)
       })
       .catch((error) => {
         console.error("Error fetching user:", error);
+        setLoading(false)
       })
     } else {
       setUser({} as User)
     }
-  }, []);
+  }, [searchText]);
   
 
-  return user;
+  return {user, isLoading};
 }
 
 export {useUsers} //a named export
