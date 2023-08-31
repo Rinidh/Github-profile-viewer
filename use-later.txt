@@ -50,3 +50,8 @@ Avatar in left panel
 Skeleton startColor='pink.500' endColor='orange.500'
 
 Put the skeletons everywhere with fade
+
+
+EXTRAS (CAN USE IN OTHER PROJECTS):
+
+breadcrumbs

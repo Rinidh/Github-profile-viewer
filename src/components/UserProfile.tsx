@@ -46,12 +46,14 @@ function UsersGrid({ searchText }: Props) {
             fadeDuration={fadeDuration}
             borderRadius={100}
           >
-            <Image
-              src={user.avatar_url}
-              boxSize={{ base: 250, lg: 300 }}
-              borderRadius={100}
-              border={"1px solid black"}
-            />
+            <Link href={user.html_url} isExternal>
+              <Image
+                src={user.avatar_url}
+                boxSize={{ base: 250, lg: 300 }}
+                borderRadius={100}
+                border={"1px solid black"}
+              />
+            </Link>
           </Skeleton>
         </Center>
       </GridItem>

@@ -3,7 +3,6 @@ import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
 import Header from "./components/Header";
 import "./App.css";
 import Form from "./components/Form";
-import UserProfile from "./components/UserProfile";
 import { useState } from "react";
 import BlankProfile from "./components/BlankProfile";
 import "./App.css";
