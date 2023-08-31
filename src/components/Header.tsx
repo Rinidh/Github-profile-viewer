@@ -55,7 +55,7 @@ const Header = ({ onSearch }: Props) => {
           <About />
           <BsLightbulbFill />
           <Switch
-            colorScheme="blue"
+            colorScheme="whatsapp"
             onChange={toggleColorMode}
             isChecked={colorMode === "dark"}
             size={"lg"}

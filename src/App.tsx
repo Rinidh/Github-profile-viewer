@@ -3,10 +3,11 @@ import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
 import Header from "./components/Header";
 import "./App.css";
 import Form from "./components/Form";
-import UsersGrid from "./components/UserProfile";
+import UserProfile from "./components/UserProfile";
 import { useState } from "react";
-import BlankGrid from "./components/BlankProfile";
+import BlankProfile from "./components/BlankProfile";
 import "./App.css";
+import { InfoTabs } from "./components/InfoTabs";
 
 interface UserQuery {
   searchText: string;
@@ -46,9 +47,13 @@ function App() {
       </Show>
       <GridItem pl="2" area={"main"} p={10}>
         <Box minHeight="540px" py={10}>
-          {!userQuery.searchText && <BlankGrid />}
+          {!userQuery.searchText && <BlankProfile />}
           {userQuery.searchText && (
-            <UsersGrid searchText={userQuery.searchText} />
+            <InfoTabs
+              searchText={
+                userQuery.searchText
+              } /* searchText to be passed to the UserProfile */
+            />
           )}
         </Box>
       </GridItem>

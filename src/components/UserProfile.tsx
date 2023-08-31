@@ -28,7 +28,7 @@ function UsersGrid({ searchText }: Props) {
 
   const fadeDuration = 0.5;
 
-  const rowSpanForBio = user.bio?.length > 100 ? 2 : 1;
+  const rowSpanForBio = user.bio?.length > 50 ? 2 : 1;
 
   return (
     <Grid
