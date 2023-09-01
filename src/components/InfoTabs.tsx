@@ -7,6 +7,7 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import UserProfile from "./UserProfile";
+import ReposList from "./ReposList";
 
 interface Props {
   searchText: string;
@@ -25,7 +26,7 @@ function InfoTabs({ searchText }: Props) {
           <UserProfile searchText={searchText} />
         </TabPanel>
         <TabPanel>
-          <p>The UserRepos component</p>
+          <ReposList searchedUser={searchText} />
         </TabPanel>
       </TabPanels>
     </Tabs>
