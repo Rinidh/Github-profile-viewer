@@ -11,7 +11,7 @@ import {
   Text,
   Skeleton,
 } from "@chakra-ui/react";
-import { useUsers } from "../hooks/useUsers";
+import { User, useUsers } from "../hooks/useUsers";
 import { BsLink45Deg } from "react-icons/bs";
 
 import { Divider } from "./Divider";
@@ -19,10 +19,13 @@ import "../userGrid.css";
 
 interface Props {
   searchText: string;
+  onReceiveNewUser: (user: User) => void;
 }
 
-function UsersGrid({ searchText }: Props) {
+function UsersGrid({ searchText, onReceiveNewUser }: Props) {
   const { user, isLoading } = useUsers(searchText);
+
+  onReceiveNewUser(user); //pass the user up to the InfoTabs to update the current user
 
   const created_at_date = new Date(user.created_at);
 
