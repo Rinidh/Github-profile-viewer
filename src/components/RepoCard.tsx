@@ -1,19 +1,22 @@
-import { Avatar, Card } from "@chakra-ui/react";
-import React from "react";
-import { User } from "../hooks/useUsers";
+import { Avatar, Card, CardBody, Heading } from "@chakra-ui/react";
+import { Repo } from "../hooks/useRepos";
 
 interface Props {
-  currentUser: User;
+  repo: Repo | null;
 }
 
-const RepoCard = ({ currentUser }: Props) => {
+const RepoCard = ({ repo }: Props) => {
   return (
-    <Card direction={"row"} variant={"outline"}>
+    <Card direction={"row"} variant={"outline"} bg={"yellow.700"}>
       <Avatar
-        src={currentUser.avatar_url}
-        boxSize={20}
+        src={repo?.avatar_url}
+        boxSize={"120px"}
         border={"1px solid red"}
+        borderRadius={"60px"}
       />
+      <CardBody>
+        <Heading>{repo?.name}</Heading>
+      </CardBody>
     </Card>
   );
 };

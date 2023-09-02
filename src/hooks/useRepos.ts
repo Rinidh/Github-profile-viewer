@@ -1,13 +1,14 @@
 import { Octokit } from "@octokit/rest";
 import { useEffect, useState } from "react";
 
-export interface ResponseRepos {
+export interface Repo {
     id: number;
     name: string;
+    avatar_url: string
 }
 
 function useRepos(searchedUser:string) { 
-  const [repos, setRepos] = useState<ResponseRepos[]>([{id: 0, name: "sth"}]);
+  const [repos, setRepos] = useState<Repo[]>([{} as Repo]);
   const [isLoading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -26,8 +27,12 @@ function useRepos(searchedUser:string) {
         setRepos(res.data);
         setLoading(false)
       })
+      .catch((e)=>{
+        console.error("Error fetching repos:", e)
+        setLoading(false)
+      })
     } else {
-      setRepos([{id: 0, name: "sth"}])
+      setRepos([{} as Repo]) //setting to empty repo obj
     }
   }, [searchedUser]);
   

@@ -19,13 +19,10 @@ import "../userGrid.css";
 
 interface Props {
   searchText: string;
-  onReceiveNewUser: (user: User) => void;
 }
 
-function UsersGrid({ searchText, onReceiveNewUser }: Props) {
+function UserProfile({ searchText }: Props) {
   const { user, isLoading } = useUsers(searchText);
-
-  onReceiveNewUser(user); //pass the user up to the InfoTabs to update the current user
 
   const created_at_date = new Date(user.created_at);
 
@@ -177,4 +174,4 @@ function UsersGrid({ searchText, onReceiveNewUser }: Props) {
   );
 }
 
-export default UsersGrid;
+export default UserProfile;
