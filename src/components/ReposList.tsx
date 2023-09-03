@@ -9,6 +9,11 @@ interface Props {
 const ReposList = ({ searchText }: Props) => {
   const { repos, isLoading } = useRepos(searchText);
 
+  const randomNumber = () => {
+    return Math.random() * 100;
+  };
+  console.log(randomNumber());
+
   return (
     // {repos.map(
     //   (
@@ -18,9 +23,13 @@ const ReposList = ({ searchText }: Props) => {
     //   )
     // )}
 
-    <VStack spacing={2} divider={<StackDivider borderColor={"green.600"} />}>
+    <VStack
+      spacing={2}
+      divider={<StackDivider borderColor={"green.600"} />}
+      key={1}
+    >
       {repos.map((repo) => (
-        <RepoCard repo={repo} key={repo.id} />
+        <RepoCard repo={repo} key={randomNumber()}></RepoCard>
       ))}
     </VStack>
   );

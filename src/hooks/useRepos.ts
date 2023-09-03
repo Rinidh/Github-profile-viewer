@@ -8,13 +8,12 @@ export interface Repo {
     created_at: string
     default_branch: string
     description: string
-
     language: string
-    license: string
     updated_at: string
+    license: {name: string} | null
     watchers: number
     html_url: string
-    owner: {html_url: string}
+    owner: {login: string, html_url: string}
 }
 
 function useRepos(searchedUser:string) { 

@@ -1,0 +1,27 @@
+.position-relative{
+  position: relative;
+}
+
+.heading {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+}
+
+.language-tag {
+  position: absolute;
+  top: 120px;
+  left: 20px;
+}
+
+.created-at {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.branch-name {
+  position: absolute;
+  top: 130px;
+  right: 20px;
+}

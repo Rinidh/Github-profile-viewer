@@ -6,16 +6,16 @@ import {
   AccordionPanel,
   Badge,
   Box,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
+  Container,
   Heading,
+  Link,
+  LinkBox,
   Tag,
   Text,
-  VStack,
 } from "@chakra-ui/react";
 import { Repo } from "../hooks/useRepos";
+import "../stylings/RepoCard.css";
+import { Divider } from "./Divider";
 
 interface Props {
   repo: Repo;
@@ -31,53 +31,61 @@ const RepoCard = ({ repo }: Props) => {
     return (
       <Accordion allowToggle>
         <AccordionItem>
-          <AccordionButton bg={"red"}>
-            <Card
-              direction={"row"}
-              variant={"filled"}
-              width={"100%"}
-              height={200}
-              borderRadius={30}
-              marginY={5}
-              bg="yellow"
-            >
-              <CardHeader w={500}>
-                <VStack gap={8}>
-                  <Heading size={"2xl"}>{repo.name}</Heading>
-                  <Badge variant={"outline"} colorScheme="green" fontSize={15}>
-                    {repo.default_branch}
-                  </Badge>
-                </VStack>
-              </CardHeader>
+          <AccordionButton
+            width={"container.lg"} //renders lg (large) size in relation to the container it is in ie AccordionItem
+            height={200}
+            borderRadius={30}
+            marginY={5}
+          >
+            <LinkBox w={"100%"} h={"100%"} className="position-relative">
+              <Heading size={"2xl"} className="heading">
+                <Link href={repo.html_url}>{repo.name}</Link>
+              </Heading>
 
-              <CardBody>
-                <Box height={"70%"}>
-                  {repo.description ? (
-                    <Text fontFamily={"kanit"} fontSize={"20px"} noOfLines={2}>
-                      {repo.description}
-                    </Text>
-                  ) : (
-                    <Text fontFamily={"kanit"} fontSize={"20px"}>
-                      No description
-                    </Text>
-                  )}
-                </Box>
-                <Tag size={"md"} variant="solid" colorScheme="green">
-                  {repo.language}
-                </Tag>
-              </CardBody>
+              <Tag
+                size={"md"}
+                variant="solid"
+                colorScheme="green"
+                className="language-tag"
+              >
+                {repo.language}
+              </Tag>
 
-              <CardFooter>
-                <Box>{createdAt(repo.created_at)}</Box>
-              </CardFooter>
-            </Card>
-            <AccordionIcon />
+              <Text fontSize={"md"} className="created-at">
+                {createdAt(repo.created_at)}
+              </Text>
+
+              <Badge
+                variant={"outline"}
+                colorScheme="green"
+                fontSize={20}
+                className="branch-name"
+              >
+                {repo.default_branch}
+              </Badge>
+            </LinkBox>
+            <AccordionIcon boxSize={"50px"} />
           </AccordionButton>
           <AccordionPanel pb={4}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            <Container marginBottom={6}>
+              {repo.description ? (
+                <Text fontFamily={"kanit"} fontSize={"20px"} noOfLines={2}>
+                  {repo.description}
+                </Text>
+              ) : (
+                <Text fontFamily={"kanit"} fontSize={"20px"}>
+                  No description
+                </Text>
+              )}
+            </Container>
+            <Divider />
+            <Box marginTop={6}>
+              <Text fontSize={"20px"}>Last updated at: {repo.updated_at}</Text>
+              <Text fontSize={"20px"}>Number of watchers: {repo.watchers}</Text>
+              <Text fontSize={"20px"}>
+                License: {repo.license?.name || "Not licensed"}
+              </Text>
+            </Box>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
