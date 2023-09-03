@@ -5,6 +5,16 @@ export interface Repo {
     id: number;
     name: string;
     avatar_url: string
+    created_at: string
+    default_branch: string
+    description: string
+
+    language: string
+    license: string
+    updated_at: string
+    watchers: number
+    html_url: string
+    owner: {html_url: string}
 }
 
 function useRepos(searchedUser:string) { 
@@ -23,7 +33,7 @@ function useRepos(searchedUser:string) {
         username: searchedUser,
       })
       .then((res) => {
-        console.log(res)
+        console.log(res.data[0])
         setRepos(res.data);
         setLoading(false)
       })

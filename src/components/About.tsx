@@ -29,8 +29,8 @@ function About() {
           <ModalCloseButton />
           <ModalBody>
             <Text>
-              This mini web app accepts the Github-user-name and returns profile
-              info
+              This mini web app accepts the Github username and returns profile
+              and repositories information
             </Text>
           </ModalBody>
 

@@ -14,11 +14,13 @@ interface Props {
 }
 
 function InfoTabs({ searchText }: Props) {
+  //usually you should declare a state var here, to see if the user is at the profile tab or repos tab, and only render the repos tab when the user clicks on it
+
   return (
     <Tabs isFitted variant="unstyled" align="center">
       <TabList mb="1em">
         <Tab>Profile</Tab>
-        <Tab>Repositories</Tab>
+        <Tab>Public Repositories</Tab>
       </TabList>
       <TabIndicator height="3px" bg="green.400" />
       <TabPanels>

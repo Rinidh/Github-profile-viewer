@@ -1,9 +1,6 @@
-import { Card, StackDivider, VStack } from "@chakra-ui/react";
-import { Repo, useRepos } from "../hooks/useRepos";
+import { StackDivider, VStack } from "@chakra-ui/react";
+import { useRepos } from "../hooks/useRepos";
 import RepoCard from "./RepoCard";
-import { User } from "../hooks/useUsers";
-import { UserContext } from "./context/UserContext";
-import { useContext } from "react";
 
 interface Props {
   searchText: string;
@@ -22,8 +19,9 @@ const ReposList = ({ searchText }: Props) => {
     // )}
 
     <VStack spacing={2} divider={<StackDivider borderColor={"green.600"} />}>
-      <RepoCard repo={repos[0]} />
-      <RepoCard repo={repos[1]} />
+      {repos.map((repo) => (
+        <RepoCard repo={repo} key={repo.id} />
+      ))}
     </VStack>
   );
 };

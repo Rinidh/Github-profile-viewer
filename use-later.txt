@@ -45,11 +45,29 @@ Textarea
 
 variant = filled on user grid
 
-Avatar in left panel
+use in left panel:       
+<Avatar
+  src={repo?.avatar_url}
+  boxSize={"120px"}
+  border={"1px solid red"}
+  borderRadius={"60px"}
+/>
 
 Skeleton startColor='pink.500' endColor='orange.500'
 
 Put the skeletons everywhere with fade
+
+            <Card
+              direction={"row"}
+              variant={"filled"}
+              width={"100%"}
+              height={200}
+              borderRadius={30}
+              marginY={5}
+              bg="yellow"
+            >
+
+
 
 
 EXTRAS (CAN USE IN OTHER PROJECTS):

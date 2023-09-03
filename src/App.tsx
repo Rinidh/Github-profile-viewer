@@ -7,7 +7,6 @@ import { useState } from "react";
 import BlankProfile from "./components/BlankProfile";
 import "./App.css";
 import { InfoTabs } from "./components/InfoTabs";
-import { User } from "./hooks/useUsers";
 
 interface UserQuery {
   //add more props here that hold search-query-
