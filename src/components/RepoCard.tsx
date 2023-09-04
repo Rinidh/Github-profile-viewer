@@ -48,7 +48,7 @@ const RepoCard = ({ repo }: Props) => {
                 colorScheme="green"
                 className="language-tag"
               >
-                {repo.language}
+                {repo.language || "No specific language"}
               </Tag>
 
               <Text fontSize={"md"} className="created-at">

@@ -1,12 +1,11 @@
 import {
   Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -21,26 +20,27 @@ function About() {
         children={<BsQuestionOctagonFill />}
         size={"lg"}
       />
+      <Drawer placement={"top"} onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader
+            borderBottomWidth="5px"
+            fontSize={30}
+            textAlign={"center"}
+          >
+            About this App
+          </DrawerHeader>
 
-      <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInBottom">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>About this App</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>
-              This mini web app accepts the Github username and returns profile
-              and repositories information
+          <DrawerBody>
+            <Text textAlign={"center"} fontSize={20}>
+              This is a mini practice web app that fetches github profile and
+              repositories information after inputting the user-name the name
             </Text>
-          </ModalBody>
+          </DrawerBody>
 
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          <DrawerFooter>{/* can place some button here */}</DrawerFooter>
+        </DrawerContent>
+      </Drawer>{" "}
     </>
   );
 }

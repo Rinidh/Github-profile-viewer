@@ -12,7 +12,6 @@ const ReposList = ({ searchText }: Props) => {
   const randomNumber = () => {
     return Math.random() * 100;
   };
-  console.log(randomNumber());
 
   return (
     // {repos.map(
