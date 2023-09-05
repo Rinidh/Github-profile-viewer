@@ -17,8 +17,6 @@ interface UserQuery {
 function App() {
   const [userQuery, setUserQuery] = useState<UserQuery>({} as UserQuery);
 
-  //providing theme color to all comps via ColorModeContext (uses useContext())
-
   return (
     <ColorModeProvider /* to enable using useColorMode() hook. The hook works even though you don't put this */
     >
@@ -46,7 +44,7 @@ function App() {
           />
         </GridItem>
         <Show above="lg" /* to show at size lg and above */>
-          <GridItem pl="2" bg="pink.300" area={"nav"}>
+          <GridItem area={"nav"}>
             <LeftPanel />
           </GridItem>
         </Show>

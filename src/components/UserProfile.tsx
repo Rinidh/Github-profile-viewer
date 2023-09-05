@@ -22,7 +22,7 @@ interface Props {
 }
 
 function UserProfile({ searchText }: Props) {
-  const { user, isLoading } = useUsers(searchText);
+  const { user, isLoading, dataSet } = useUsers(searchText);
 
   const created_at_date = new Date(user.created_at);
 

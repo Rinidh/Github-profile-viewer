@@ -1,5 +1,6 @@
 import { Octokit } from "@octokit/rest";
 import { useState, useEffect } from "react"
+//import { useSetStorage } from "./useSetStorage";
 
 export interface User {
   avatar_url: string,
@@ -18,13 +19,16 @@ export interface User {
 function useUsers(searchText:string) {
   const [user, setUser] = useState<User>({} as User);
   const [isLoading, setLoading] = useState(false)
+  
+  const [dataSet, setDataSet] = useState<Set<User>>(new Set()); //uss useState instead of only dealing with the state, such that when you update the set, the comp RE-RENDERS
 
   useEffect(() => {
+
     const octokit = new Octokit({
       auth: "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",
     });
 
-    if(searchText) {
+    if(searchText) { //only run the code below if the user searched sth
       setLoading(true)
 
       octokit
@@ -32,8 +36,12 @@ function useUsers(searchText:string) {
         owner: "abc",
       })
       .then((res) => {
-        setUser(res.data);
+        setUser(res.data);        
         setLoading(false)
+
+        setDataSet(new Set([...dataSet, res.data]))
+        console.log(dataSet);
+        
       })
       .catch((error) => {
         console.error("Error fetching user:", error);
@@ -45,7 +53,7 @@ function useUsers(searchText:string) {
   }, [searchText]);
   
 
-  return {user, isLoading};
+  return {user, isLoading, dataSet};
 }
 
 export {useUsers} //a named export
