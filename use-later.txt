@@ -47,6 +47,8 @@ Put the skeletons everywhere with fade
 
 use ids instead of random numbers in repo list
 
+the z-index of the header must be higher than <Tab>
+
 
 EXTRAS (CAN USE IN OTHER PROJECTS):
 

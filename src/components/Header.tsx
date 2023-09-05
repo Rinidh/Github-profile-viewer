@@ -1,6 +1,8 @@
 import {
   Box,
   Center,
+  ColorModeProvider,
+  ColorModeProviderProps,
   Container,
   Flex,
   Grid,
@@ -20,6 +22,7 @@ import { BsLightbulbFill } from "react-icons/bs";
 import { BsMoonFill } from "react-icons/bs";
 import SearchInput from "./SearchInput";
 import About from "./About";
+import "../stylings/Header.css";
 
 interface Props {
   onSearch: (searchText: string) => void;
@@ -29,10 +32,11 @@ const Header = ({ onSearch }: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const logoColor = colorMode === "light" ? logo : darkLogo;
+  const headerBackground = colorMode === "light" ? "gray.100" : "gray.800";
 
   return (
     <>
-      <Flex flexDirection={"row"}>
+      <Flex flexDirection={"row"} className="main-header" bg={headerBackground}>
         <LinkBox as="div" maxW="sm">
           <LinkOverlay
             href="" /* blank href causes page reload while href='#' causes default scroll to top */

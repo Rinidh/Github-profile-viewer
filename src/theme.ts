@@ -1,25 +1,25 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
 
-const config: ThemeConfig = { //the config var is of type ThemeConfig to access the initialColoMode prop below
+export const themeConfig: ThemeConfig = { //the config var is of type ThemeConfig to access the initialColoMode prop below
   initialColorMode: "dark", //system sets the initial color mode //or "dark" or "light"
   useSystemColorMode: true //changes in sys color mode also affect in app
 }
 
 const theme = extendTheme({
-  config,
-  // colors: {
-  //   gray: { //to modify the color shades of gray eg the gray200, gray600 etc
-  //     50: "#f9f9f9",
-  //     100: "#ededed",
-  //     200: "#d3d3d3",
-  //     300: "#b3b3b3",
-  //     400: "#a0a0a0",
-  //     500: "#898989",
-  //     600: "#6c6c6c",
-  //     700: "#202020",
-  //     800: "#121212",
-  //     900: "#111"
-  //   }
-  // }
+  themeConfig,
+  colors: {
+    gray: { //to modify the color shades of gray eg the gray200, gray600 etc
+      50: "#e5fff1",
+      100: "#e5fff1",
+      200: "#c9f0d8",
+      300: "#c9f0d8",//light colors upto here
+      400: "#1b7f3e",
+      500: "#1b7f3e",//medium dark
+      600: "#0c4c28",
+      700: "#0c4c28",
+      800: "#001f04",
+      900: "#001f04", //dark colors upto here
+    }
+  }
 });
 export default theme;
