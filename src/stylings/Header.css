@@ -1,4 +1,5 @@
 .main-header {
   position: fixed;
   width: 100%;
+  z-index: 1; /*just setting the z-index of greater than 0 puts the header on top of the green line below active tab name; before this green line passed over the header*/
 }
