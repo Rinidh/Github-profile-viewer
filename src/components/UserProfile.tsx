@@ -18,12 +18,11 @@ import { Divider } from "./Divider";
 import "../userGrid.css";
 
 interface Props {
-  searchText: string;
+  user: User;
+  isLoading: boolean;
 }
 
-function UserProfile({ searchText }: Props) {
-  const { user, isLoading, dataSet } = useUsers(searchText);
-
+function UserProfile({ user, isLoading }: Props) {
   const created_at_date = new Date(user.created_at);
 
   const fadeDuration = 0.5;

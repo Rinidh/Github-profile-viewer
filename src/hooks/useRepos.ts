@@ -32,7 +32,6 @@ function useRepos(searchedUser:string) {
         username: searchedUser,
       })
       .then((res) => {
-        console.log(res.data[0])
         setRepos(res.data);
         setLoading(false)
       })

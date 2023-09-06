@@ -23,12 +23,11 @@ function useUsers(searchText:string) {
   const [dataSet, setDataSet] = useState<Set<User>>(new Set()); //uss useState instead of only dealing with the state, such that when you update the set, the comp RE-RENDERS
 
   useEffect(() => {
-
-    const octokit = new Octokit({
-      auth: "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",
-    });
-
+    
     if(searchText) { //only run the code below if the user searched sth
+      const octokit = new Octokit({
+        auth: "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",
+      });
       setLoading(true)
 
       octokit
@@ -40,8 +39,6 @@ function useUsers(searchText:string) {
         setLoading(false)
 
         setDataSet(new Set([...dataSet, res.data]))
-        console.log(dataSet);
-        
       })
       .catch((error) => {
         console.error("Error fetching user:", error);

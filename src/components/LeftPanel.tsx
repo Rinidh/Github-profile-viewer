@@ -1,6 +1,11 @@
 import { Stack, useColorMode } from "@chakra-ui/react";
+import { User } from "../hooks/useUsers";
 
-const LeftPanel = () => {
+interface Props {
+  dataSet: Set<User>; //dataSet is of type: a js set holding user-type objects
+}
+
+const LeftPanel = ({ dataSet }: Props) => {
   const { colorMode } = useColorMode();
 
   const leftPanelBackground = colorMode === "light" ? "gray.100" : "gray.800";
@@ -8,9 +13,7 @@ const LeftPanel = () => {
   return (
     <>
       <Stack direction="column-reverse" bg={leftPanelBackground}>
-        <p>1</p>
-        <p>2</p>
-        <p>3</p>
+        <p>Data-Set size: {dataSet.size}</p>
       </Stack>
     </>
   );
