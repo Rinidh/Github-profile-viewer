@@ -47,7 +47,10 @@ function App() {
         </GridItem>
         <Show above="lg" /* to show at size lg and above */>
           <GridItem area={"nav"}>
-            <LeftPanel dataSet={dataSet} />
+            <LeftPanel
+              dataSet={dataSet}
+              showWhen={Boolean(userQuery.searchText)}
+            />
           </GridItem>
         </Show>
         <GridItem pl="2" area={"main"} p={10}>

@@ -1,18 +1,10 @@
-import {
-  Avatar,
-  Center,
-  Flex,
-  Heading,
-  Stack,
-  useColorMode,
-  Text,
-  Box,
-} from "@chakra-ui/react";
+import { Center, Heading, Stack } from "@chakra-ui/react";
 import { User } from "../hooks/useUsers";
 import LeftPanelBox from "./LeftPanelBox";
 
 interface Props {
   dataSet: Set<User>; //dataSet is of type: a js set holding user-type objects
+  showWhen: boolean;
 }
 
 interface FetchedUsersList {
@@ -20,7 +12,7 @@ interface FetchedUsersList {
   avatarImg: string;
 }
 
-const LeftPanel = ({ dataSet }: Props) => {
+const LeftPanel = ({ dataSet, showWhen }: Props) => {
   let fetchedUsersList: FetchedUsersList[] = [];
   dataSet.forEach((user) =>
     fetchedUsersList.push({ name: user.name, avatarImg: user.avatar_url })
@@ -30,7 +22,7 @@ const LeftPanel = ({ dataSet }: Props) => {
     <>
       <Center marginLeft={5} marginBottom={2}>
         <Heading fontFamily={"kanit"} size={"lg"}>
-          Recent
+          {showWhen && "Recent"}
         </Heading>
       </Center>
       <Stack direction="column-reverse" marginLeft={5}>
