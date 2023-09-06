@@ -19,8 +19,6 @@ function App() {
   const [userQuery, setUserQuery] = useState<UserQuery>({} as UserQuery);
   const { user, isLoading, dataSet } = useUsers(userQuery.searchText);
 
-  console.log(dataSet);
-
   return (
     <ColorModeProvider /* to enable using useColorMode() hook. The hook works even though you don't put this */
     >
@@ -37,7 +35,7 @@ function App() {
         }}
         gridTemplateColumns={{
           base: "1fr",
-          lg: "210px 1fr",
+          lg: "240px 1fr",
         }}
       >
         <GridItem area={"header"}>

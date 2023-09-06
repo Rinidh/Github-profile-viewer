@@ -1,19 +1,30 @@
-import { Stack, useColorMode } from "@chakra-ui/react";
+import {
+  Avatar,
+  Center,
+  Flex,
+  Heading,
+  Stack,
+  useColorMode,
+  Text,
+  Box,
+} from "@chakra-ui/react";
 import { User } from "../hooks/useUsers";
+import LeftPanelBox from "./LeftPanelBox";
 
 interface Props {
   dataSet: Set<User>; //dataSet is of type: a js set holding user-type objects
 }
 
 const LeftPanel = ({ dataSet }: Props) => {
-  const { colorMode } = useColorMode();
-
-  const leftPanelBackground = colorMode === "light" ? "gray.100" : "gray.800";
-
   return (
     <>
-      <Stack direction="column-reverse" bg={leftPanelBackground}>
-        <p>Data-Set size: {dataSet.size}</p>
+      <Center marginLeft={5} marginBottom={2}>
+        <Heading fontFamily={"kanit"} size={"lg"}>
+          Recent
+        </Heading>
+      </Center>
+      <Stack direction="column-reverse" marginLeft={5}>
+        <LeftPanelBox name="Name 🙂" avatarImg={null} />
       </Stack>
     </>
   );

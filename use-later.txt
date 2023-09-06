@@ -33,14 +33,6 @@ Textarea
 
 variant = filled on user grid
 
-use in left panel:       
-<Avatar
-  src={repo?.avatar_url}
-  boxSize={"120px"}
-  border={"1px solid red"}
-  borderRadius={"60px"}
-/>
-
 Skeleton startColor='pink.500' endColor='orange.500'
 
 Put the skeletons everywhere with fade
