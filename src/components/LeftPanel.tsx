@@ -15,7 +15,17 @@ interface Props {
   dataSet: Set<User>; //dataSet is of type: a js set holding user-type objects
 }
 
+interface FetchedUsersList {
+  name: string;
+  avatarImg: string;
+}
+
 const LeftPanel = ({ dataSet }: Props) => {
+  let fetchedUsersList: FetchedUsersList[] = [];
+  dataSet.forEach((user) =>
+    fetchedUsersList.push({ name: user.name, avatarImg: user.avatar_url })
+  );
+
   return (
     <>
       <Center marginLeft={5} marginBottom={2}>
@@ -24,7 +34,9 @@ const LeftPanel = ({ dataSet }: Props) => {
         </Heading>
       </Center>
       <Stack direction="column-reverse" marginLeft={5}>
-        <LeftPanelBox name="Name 🙂" avatarImg={null} />
+        {fetchedUsersList.map((userObj) => (
+          <LeftPanelBox name={userObj.name} avatarImg={userObj.avatarImg} />
+        ))}
       </Stack>
     </>
   );

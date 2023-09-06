@@ -34,6 +34,7 @@ const LeftPanelBox = ({ avatarImg, name }: Props) => {
       direction={"row"}
       bg={leftPanelBackground}
       borderRadius={15}
+      marginBottom={2}
       sx={{
         //sx prop to add custom styles directly, without creating another css file
         transition: "all 0.2s ease-in-out",
