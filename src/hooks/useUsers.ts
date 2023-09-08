@@ -52,12 +52,13 @@ function useUsers(searchText:string) {
         //} else if(axios.isCancel(error)) {... //to check using axios lib if request was cancelled
         } else { //general meassage for all other errors
           console.error('Other or API error:', error);
+          setError(error)
           setLoading(false)
         }
       })
     }
     //cancelTokenSource.cancel("test cancel from somewhere in app") //if using the axios lib
-    return ()=>controller.abort()
+    return ()=>controller.abort("Request was aborted...")
 
   }, [searchText]);
   

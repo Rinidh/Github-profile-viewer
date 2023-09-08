@@ -1,28 +1,28 @@
 import { Center, Heading, Image, useColorMode } from "@chakra-ui/react";
-import networkSymbolLight from "../assets/No-connect.png";
-import networkSymbolDark from "../assets/No-connect-dark.png";
+import Exclamation from "../assets/Exclamation-mark.png";
+import ExclamationDark from "../assets/Exclamation-mark-dark.png";
 
-function NoNetwork() {
+function ErrorPage() {
   const { colorMode } = useColorMode();
 
-  const networkSymbol =
-    colorMode === "light" ? networkSymbolLight : networkSymbolDark;
+  const exclamationSymbol =
+    colorMode === "light" ? Exclamation : ExclamationDark;
 
   return (
     <>
       <Center h={300}>
         <Image
-          src={networkSymbol}
+          src={exclamationSymbol}
           boxSize={120}
           opacity={"0.3"}
           marginRight={10}
         />
         <Heading size={"3xl"} opacity={"0.3"}>
-          Oops! Check your network
+          Something Went Wrong...
         </Heading>
       </Center>
     </>
   );
 }
 
-export default NoNetwork;
+export default ErrorPage;

@@ -1,4 +1,5 @@
 import { User } from "../hooks/useUsers";
+import ErrorPage from "./ErrorPage";
 import { InfoTabs } from "./InfoTabs";
 import NoNetwork from "./NoNetwork";
 
@@ -17,6 +18,8 @@ const UserProfileContainer = ({
 }: Props) => {
   if (error?.message.includes("Failed to fetch")) {
     return <NoNetwork />;
+  } else if (error) {
+    return <ErrorPage />;
   }
 
   return <InfoTabs user={user} isLoading={isLoading} searchText={searchText} />;
