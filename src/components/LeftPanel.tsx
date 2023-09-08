@@ -27,7 +27,11 @@ const LeftPanel = ({ dataSet, showWhen }: Props) => {
       </Center>
       <Stack direction="column-reverse" marginLeft={5}>
         {fetchedUsersList.map((userObj) => (
-          <LeftPanelBox name={userObj.name} avatarImg={userObj.avatarImg} />
+          <LeftPanelBox
+            key={userObj.name}
+            name={userObj.name}
+            avatarImg={userObj.avatarImg}
+          />
         ))}
       </Stack>
     </>

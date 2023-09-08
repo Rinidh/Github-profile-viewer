@@ -39,7 +39,7 @@ Put the skeletons everywhere with fade
 
 use ids instead of random numbers in repo list
 
-the z-index of the header must be higher than <Tab>
+rather use the abortController, or leave axios.cancelToken.source
 
 
 EXTRAS (CAN USE IN OTHER PROJECTS):

@@ -9,6 +9,7 @@ import "./App.css";
 import { InfoTabs } from "./components/InfoTabs";
 import LeftPanel from "./components/LeftPanel";
 import { useUsers } from "./hooks/useUsers";
+import UserProfileContainer from "./components/UserProfileContainer";
 
 interface UserQuery {
   //add more props here that hold user's search-query
@@ -17,7 +18,18 @@ interface UserQuery {
 
 function App() {
   const [userQuery, setUserQuery] = useState<UserQuery>({} as UserQuery);
-  const { user, isLoading, dataSet } = useUsers(userQuery.searchText);
+  const { user, isLoading, error, dataSet } = useUsers(userQuery.searchText);
+
+  const mainContent = userQuery.searchText ? (
+    <UserProfileContainer
+      user={user}
+      isLoading={isLoading}
+      searchText={userQuery.searchText}
+      error={error}
+    />
+  ) : (
+    <BlankProfile />
+  );
 
   return (
     <ColorModeProvider /* to enable using useColorMode() hook. The hook works even though you don't put this */
@@ -55,14 +67,7 @@ function App() {
         </Show>
         <GridItem pl="2" area={"main"} p={10}>
           <Box minHeight="540px" py={10}>
-            {!userQuery.searchText && <BlankProfile />}
-            {userQuery.searchText && (
-              <InfoTabs
-                user={user}
-                isLoading={isLoading}
-                searchText={userQuery.searchText}
-              />
-            )}
+            {mainContent}
           </Box>
         </GridItem>
         <GridItem pl="2" bg="blue.300" area={"footer"}>

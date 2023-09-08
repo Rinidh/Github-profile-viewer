@@ -1,4 +1,5 @@
 import { Octokit } from "@octokit/rest";
+import axios from "axios";
 import { useState, useEffect } from "react"
 //import { useSetStorage } from "./useSetStorage";
 
@@ -18,9 +19,12 @@ export interface User {
 
 function useUsers(searchText:string) {
   const [user, setUser] = useState<User>({} as User);
-  const [isLoading, setLoading] = useState(false)
-  
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState<Error>()
   const [dataSet, setDataSet] = useState<Set<User>>(new Set()); //uss useState instead of only dealing with the state, such that when you update the set, the comp RE-RENDERS
+
+  //const cancelTokenSource = axios.CancelToken.source() //by chatGPT; Use the axios lib to handle errors instead of new AbortController() class instance as in game-hub-rinidh 
+  const controller = new AbortController()
 
   useEffect(() => {
     
@@ -33,24 +37,32 @@ function useUsers(searchText:string) {
       octokit
       .request(`GET /users/${searchText}`, { 
         owner: "abc",
+        signal: controller.signal,
       })
       .then((res) => {
         setUser(res.data);        
         setLoading(false)
-
         setDataSet(new Set([...dataSet, res.data]))
       })
-      .catch((error) => {
-        console.error("Error fetching user:", error);
-        setLoading(false)
+      .catch((error) => {       
+        if (error instanceof Error && error.message.includes('Failed to fetch')) { //to see if it was a network error
+          console.error('Network error (Internet unavailable):', error.message);
+          setError(error);
+          setLoading(false)
+        //} else if(axios.isCancel(error)) {... //to check using axios lib if request was cancelled
+        } else { //general meassage for all other errors
+          console.error('Other or API error:', error);
+          setLoading(false)
+        }
       })
-    } else {
-      setUser({} as User)
     }
+    //cancelTokenSource.cancel("test cancel from somewhere in app") //if using the axios lib
+    return ()=>controller.abort()
+
   }, [searchText]);
   
 
-  return {user, isLoading, dataSet};
+  return {user, isLoading, error, dataSet};
 }
 
 export {useUsers} //a named export
