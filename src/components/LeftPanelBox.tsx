@@ -34,7 +34,11 @@ const LeftPanelBox = ({ avatarImg, name }: Props) => {
       }}
     >
       <Avatar
-        src={avatarImg ? avatarImg : ""}
+        src={
+          avatarImg
+            ? avatarImg
+            : "" /* empty string makes chakra render a default avatar img */
+        }
         boxSize={"67px"}
         borderRadius={"35px"}
       />

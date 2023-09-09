@@ -14,15 +14,19 @@ interface FetchedUsersList {
 
 const LeftPanel = ({ dataSet, showWhen }: Props) => {
   let fetchedUsersList: FetchedUsersList[] = [];
-  dataSet.forEach((user) =>
-    fetchedUsersList.push({ name: user.name, avatarImg: user.avatar_url })
+  dataSet.forEach(
+    (user) =>
+      fetchedUsersList.push({
+        name: user.name || user.login,
+        avatarImg: user.avatar_url,
+      }) //name is set to the login-name at github if there is no user name eg for "jeetd"
   );
 
   return (
     <>
       <Center marginLeft={5} marginBottom={2}>
         <Heading fontFamily={"kanit"} size={"lg"}>
-          {showWhen && "Recent"}
+          {showWhen === true && "Recent"}
         </Heading>
       </Center>
       <Stack direction="column-reverse" marginLeft={5}>
