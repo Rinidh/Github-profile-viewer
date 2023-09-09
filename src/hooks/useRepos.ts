@@ -18,7 +18,6 @@ export interface Repo {
 
 function useRepos(searchedUser:string) { 
   const [repos, setRepos] = useState<Repo[]>([{} as Repo]);
-  const [isLoading, setLoading] = useState(false)
 
   useEffect(() => {
     const octokit = new Octokit({
@@ -26,18 +25,14 @@ function useRepos(searchedUser:string) {
     });
 
     if(searchedUser) {
-      setLoading(true)
-
       octokit.request(`GET /users/${searchedUser}/repos`, { // or use: octokit.repos.listForUser({username: searchedUser}) acc to chatgpt
         username: searchedUser,
       })
       .then((res) => {
         setRepos(res.data);
-        setLoading(false)
       })
-      .catch((e)=>{
+      .catch((e: Error)=>{
         console.error("Error fetching repos:", e)
-        setLoading(false)
       })
     } else {
       setRepos([{} as Repo]) //setting to empty repo obj
@@ -45,7 +40,7 @@ function useRepos(searchedUser:string) {
   }, [searchedUser]);
   
 
-  return {repos, isLoading};
+  return {repos};
 }
 
 export {useRepos} //a named export
