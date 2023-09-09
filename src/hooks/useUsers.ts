@@ -19,7 +19,7 @@ export interface User {
 function useUsers(searchText:string) {
   const [user, setUser] = useState<User>({} as User);
   const [isLoading, setLoading] = useState(false);
-  const [error, setError] = useState<Error>()
+  const [error, setError] = useState("")
   const [dataSet, setDataSet] = useState<Set<User>>(new Set()); //uss useState instead of only dealing with the state, such that when you update the set, the comp RE-RENDERS
 
   //const cancelTokenSource = axios.CancelToken.source() //by chatGPT; Use the axios lib to handle errors instead of new AbortController() class instance as in game-hub-rinidh 
@@ -43,16 +43,25 @@ function useUsers(searchText:string) {
         setLoading(false)
         setDataSet(new Set([...dataSet, res.data]))
       })
-      .catch((error) => {       
-        if (error instanceof Error && error.message.includes('Failed to fetch')) { //to see if it was a network error
-          console.error('Network error (Internet unavailable):', error.message);
-          setError(error);
-          setLoading(false)
-        //} else if(axios.isCancel(error)) {... //to check using axios lib if request was cancelled
-        } else { //general meassage for all other errors
-          console.error('Other or API error:', error);
-          setError(error)
-          setLoading(false)
+      .catch((error) => {
+        switch (error.message) {
+          case "Failed to fetch":
+            console.error('Network error (Internet unavailable):', error.message);
+            setError(error.message);
+            setLoading(false)
+            break;
+
+          case "Not Found":
+            console.error('No user found!:', error.message);
+            setError(error.message);
+            setLoading(false)  
+            break;
+
+          default:
+            console.error('Other or API error:', error);
+            setError(error.message)
+            setLoading(false)  
+            break;
         }
       })
     }
