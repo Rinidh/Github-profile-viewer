@@ -1,6 +1,7 @@
 import { Center, Heading, Stack } from "@chakra-ui/react";
 import { User } from "../hooks/useUsers";
 import LeftPanelBox from "./LeftPanelBox";
+import "../stylings/LeftPanel.css";
 
 interface Props {
   dataSet: Set<User>; //dataSet is of type: a js set holding user-type objects
@@ -30,12 +31,16 @@ const LeftPanel = ({ dataSet, showWhen }: Props) => {
 
   return (
     <>
-      <Center marginLeft={5} marginBottom={2}>
+      <Center marginLeft={5} marginBottom={2} className="position-fixed">
         <Heading fontFamily={"kanit"} size={"lg"}>
           {showWhen === true && "Recent"}
         </Heading>
       </Center>
-      <Stack direction="column-reverse" marginLeft={5}>
+      <Stack
+        direction="column-reverse"
+        marginLeft={5}
+        className="position-fixed"
+      >
         {fetchedUsersList.map((userObj) => (
           <LeftPanelBox
             key={userObj.name}
