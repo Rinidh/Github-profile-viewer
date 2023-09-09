@@ -6,6 +6,7 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
+import TruncateWord from "./TruncateWord";
 
 interface Props {
   avatarImg: string | null;
@@ -16,18 +17,6 @@ const LeftPanelBox = ({ avatarImg, name }: Props) => {
   const { colorMode } = useColorMode();
 
   const leftPanelBackground = colorMode === "light" ? "gray.100" : "gray.700";
-
-  const truncateName = (longName: string) => {
-    if (longName.length < 9) return longName;
-
-    let shortenedName = "";
-    for (let index = 0; index < 9; index++) {
-      //"index < 9" means upto 9 characters will be added to shortenedName
-      shortenedName += longName[index];
-    }
-    shortenedName += "...";
-    return shortenedName;
-  };
 
   return (
     <Flex
@@ -56,7 +45,7 @@ const LeftPanelBox = ({ avatarImg, name }: Props) => {
               "2xl"
             } /* this emoji is also a character (like a, b, 3, &, % etc) in the UTF-8 char set */
           >
-            {truncateName(name)}
+            {<TruncateWord longWord={name} />}
           </Text>
         </Box>
       </Center>
