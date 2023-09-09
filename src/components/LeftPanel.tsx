@@ -1,4 +1,4 @@
-import { Center, Heading, Stack } from "@chakra-ui/react";
+import { Center, Divider, Heading, Stack } from "@chakra-ui/react";
 import { User } from "../hooks/useUsers";
 import LeftPanelBox from "./LeftPanelBox";
 import "../stylings/LeftPanel.css";
@@ -30,8 +30,12 @@ const LeftPanel = ({ dataSet, showWhen }: Props) => {
   });
 
   return (
-    <>
-      <Center marginLeft={5} marginBottom={2} className="position-fixed">
+    <div className="position-fixed">
+      <Center
+        marginLeft={5}
+        marginBottom={2}
+        className="position-absolute-head"
+      >
         <Heading fontFamily={"kanit"} size={"lg"}>
           {showWhen === true && "Recent"}
         </Heading>
@@ -39,7 +43,7 @@ const LeftPanel = ({ dataSet, showWhen }: Props) => {
       <Stack
         direction="column-reverse"
         marginLeft={5}
-        className="position-fixed"
+        className="position-absolute-list"
       >
         {fetchedUsersList.map((userObj) => (
           <LeftPanelBox
@@ -49,7 +53,7 @@ const LeftPanel = ({ dataSet, showWhen }: Props) => {
           />
         ))}
       </Stack>
-    </>
+    </div>
   );
 };
 

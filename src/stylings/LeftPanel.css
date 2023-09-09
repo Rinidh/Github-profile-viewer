@@ -1,3 +1,13 @@
 .position-fixed {
   position: fixed;
 }
+
+.position-absolute-head {
+  position: absolute;
+  top: 10px;
+}
+
+.position-absolute-list {
+  position: absolute;
+  top: 70px;
+}

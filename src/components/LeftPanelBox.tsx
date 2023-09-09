@@ -21,6 +21,8 @@ const LeftPanelBox = ({ avatarImg, name }: Props) => {
   return (
     <Flex
       direction={"row"}
+      padding={2}
+      minWidth={240}
       bg={leftPanelBackground}
       borderRadius={15}
       marginBottom={2}
@@ -39,8 +41,7 @@ const LeftPanelBox = ({ avatarImg, name }: Props) => {
             ? avatarImg
             : "" /* empty string makes chakra render a default avatar img */
         }
-        boxSize={"67px"}
-        borderRadius={"35px"}
+        boxSize={"65px"}
       />
       <Center>
         <Box marginLeft={2}>
