@@ -4,9 +4,8 @@ import Header from "./components/Header";
 import "./App.css";
 import Form from "./components/Form";
 import { useState } from "react";
-import BlankProfile from "./components/BlankProfile";
+import Blank from "./components/Blank";
 import "./App.css";
-import { InfoTabs } from "./components/InfoTabs";
 import LeftPanel from "./components/LeftPanel";
 import { useUsers } from "./hooks/useUsers";
 import UserProfileContainer from "./components/UserProfileContainer";
@@ -28,7 +27,7 @@ function App() {
       error={error}
     />
   ) : (
-    <BlankProfile />
+    <Blank />
   );
 
   return (
