@@ -14,13 +14,19 @@ interface FetchedUsersList {
 
 const LeftPanel = ({ dataSet, showWhen }: Props) => {
   let fetchedUsersList: FetchedUsersList[] = [];
-  dataSet.forEach(
-    (user) =>
+  dataSet.forEach((user) => {
+    if (
+      !fetchedUsersList.includes({
+        name: user.name || user.login, //user.login if user.name is null
+        avatarImg: user.avatar_url,
+      })
+    ) {
       fetchedUsersList.push({
         name: user.name || user.login,
         avatarImg: user.avatar_url,
-      }) //name is set to the login-name at github if there is no user name eg for "jeetd"
-  );
+      }); //name is set to the login-name at github if there is no user name eg for "jeetd"
+    }
+  });
 
   return (
     <>
