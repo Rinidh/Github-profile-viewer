@@ -11,12 +11,20 @@ import TruncateWord from "./TruncateWord";
 interface Props {
   avatarImg: string | null;
   name: string;
+  isActive: boolean;
+  onBoxClick: (userName: string) => void;
 }
 
-const LeftPanelBox = ({ avatarImg, name }: Props) => {
+const LeftPanelBox = ({ avatarImg, name, isActive, onBoxClick }: Props) => {
   const { colorMode } = useColorMode();
 
   const leftPanelBackground = colorMode === "light" ? "gray.100" : "gray.700";
+
+  const border = isActive ? "4px solid green" : "";
+
+  const handleClick = (name: string) => {
+    onBoxClick(name);
+  };
 
   return (
     <Flex
@@ -24,6 +32,7 @@ const LeftPanelBox = ({ avatarImg, name }: Props) => {
       padding={2}
       minWidth={240}
       bg={leftPanelBackground}
+      border={border}
       borderRadius={15}
       marginBottom={2}
       sx={{
@@ -33,6 +42,11 @@ const LeftPanelBox = ({ avatarImg, name }: Props) => {
           transform: "scale(1.05)", // Increase the size by 10% on hover
           boxShadow: "xl",
         },
+      }}
+      onClick={(event: React.MouseEvent<HTMLDivElement>) => {
+        console.log(event); //SyntheticBaseEvent by React. Note the type of event this is: React.MouseEvent<HTMLDivElement>
+
+        handleClick(name); //what to do on click
       }}
     >
       <Avatar

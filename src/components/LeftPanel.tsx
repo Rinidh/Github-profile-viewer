@@ -2,6 +2,7 @@ import { Center, Divider, Heading, Stack } from "@chakra-ui/react";
 import { User } from "../hooks/useUsers";
 import LeftPanelBox from "./LeftPanelBox";
 import "../stylings/LeftPanel.css";
+import { useState } from "react";
 
 interface Props {
   dataSet: Set<User>; //dataSet is of type: a js set holding user-type objects
@@ -14,6 +15,8 @@ interface FetchedUsersList {
 }
 
 const LeftPanel = ({ dataSet, showWhen }: Props) => {
+  const [activeBox, setActiveBox] = useState("");
+
   let fetchedUsersList: FetchedUsersList[] = [];
   dataSet.forEach((user) => {
     if (
@@ -50,6 +53,8 @@ const LeftPanel = ({ dataSet, showWhen }: Props) => {
             key={userObj.name}
             name={userObj.name}
             avatarImg={userObj.avatarImg}
+            onBoxClick={(name) => setActiveBox(name)}
+            isActive={userObj.name === activeBox}
           />
         ))}
       </Stack>
