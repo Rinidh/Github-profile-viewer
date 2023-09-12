@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Divider,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -21,7 +20,12 @@ const StyledInlineHeading = styled.p`
   font-size: 25px;
 `; //used this coz the <Text> comp of Chakra has unchangeable display: block style, yet inline-block is needed
 
-function About() {
+interface Props {
+  onActivateGithubMode: () => void;
+  githubMode: boolean;
+}
+
+function About({ onActivateGithubMode }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode } = useColorMode();
 
@@ -52,12 +56,11 @@ function About() {
               borderRadius={20}
               padding={3}
             >
-              <Text fontSize={20}>
+              <Text fontSize={20} marginBottom={10}>
                 You are currently running this app in demonstration mode. Any
-                search will only return this project's owner's github
-                information only
+                search will only return this project's owner's (Rinidh's) github
+                info only
               </Text>
-              <Divider colorScheme="red" marginBottom={10} />
 
               <Box width={"190px"}>
                 <StyledInlineHeading>
@@ -67,9 +70,9 @@ function About() {
               <Switch
                 colorScheme="red"
                 size="md"
-                display={"inline-block"}
                 float={"right"}
                 marginTop={-12} //negative values for positioning
+                onChange={onActivateGithubMode}
               />
             </Box>
           </DrawerFooter>
