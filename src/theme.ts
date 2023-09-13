@@ -13,8 +13,8 @@ const theme = extendTheme({
       100: "#e5fff1",
       200: "#c9f0d8",
       300: "#c9f0d8",//light colors upto here
-      400: "#095624",
-      500: "#095624",//medium dark
+      400: "#095624",//medium
+      500: "#012b10",//medium-dark
       600: "#01200f",
       700: "#01200f",
       800: "#001f04",

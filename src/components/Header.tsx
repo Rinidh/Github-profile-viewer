@@ -20,14 +20,13 @@ import "../stylings/Header.css";
 interface Props {
   onSearch: (searchText: string) => void;
   onChangeGithubModeStatus: () => void;
-  githubMode: boolean;
 }
 
-const Header = ({ onSearch, onChangeGithubModeStatus, githubMode }: Props) => {
+const Header = ({ onSearch, onChangeGithubModeStatus }: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const logoColor = colorMode === "light" ? logo : darkLogo;
-  const headerBackground = colorMode === "light" ? "gray.100" : "gray.800";
+  const headerBackground = colorMode === "light" ? "gray.100" : "gray.500";
 
   return (
     <>
@@ -51,10 +50,7 @@ const Header = ({ onSearch, onChangeGithubModeStatus, githubMode }: Props) => {
           <SearchInput onSearch={onSearch} />
         </Box>
         <HStack alignItems={"center"}>
-          <About
-            changeGithubModeStatus={onChangeGithubModeStatus}
-            githubMode={githubMode}
-          />
+          <About changeGithubModeStatus={onChangeGithubModeStatus} />
           <BsLightbulbFill />
           <Switch
             colorScheme="whatsapp"

@@ -1,6 +1,8 @@
 import { Box, useColorMode, Text, Switch } from "@chakra-ui/react";
 import { useState } from "react";
 import styled from "styled-components";
+import { useContext } from "react";
+import { GithubModeContext } from "./GithubModeContext";
 
 const StyledInlineHeading = styled.p`
   display: inline-block;
@@ -9,12 +11,14 @@ const StyledInlineHeading = styled.p`
 
 interface Props {
   changeGithubModeStatus: () => void;
-  githubMode: boolean;
 }
 
-const AboutModeInfo = ({ changeGithubModeStatus, githubMode }: Props) => {
+const AboutModeInfo = ({ changeGithubModeStatus }: Props) => {
   const { colorMode } = useColorMode();
-  const [githubModeStatus, setGithubModeStatus] = useState(githubMode);
+
+  const githubModeContext = useContext(GithubModeContext);
+  const [githubModeStatus, setGithubModeStatus] = useState(githubModeContext);
+  console.log(githubModeStatus, githubModeContext);
 
   const onToggle = () => {
     changeGithubModeStatus();
@@ -59,7 +63,7 @@ const AboutModeInfo = ({ changeGithubModeStatus, githubMode }: Props) => {
         float={"right"}
         marginTop={-12} //negative values for positioning
         onChange={onToggle}
-        isChecked={githubModeStatus}
+        //isChecked={githubMode}
       />
     </Box>
   );

@@ -11,18 +11,13 @@ import {
 } from "@chakra-ui/react";
 import { BsQuestionOctagonFill } from "react-icons/bs";
 import AboutModeInfo from "./AboutModeInfo";
-//import { useContext } from "react";
 
 interface Props {
   changeGithubModeStatus: () => void;
-  githubMode: boolean; //accessing githubMode status via props instead of useContext
 }
 
-function About({ changeGithubModeStatus, githubMode }: Props) {
+function About({ changeGithubModeStatus }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  // const githubModeContext = useContext(GithubModeContext); ???
-  // console.log(githubModeContext); //"unknown" ???
 
   return (
     <>
@@ -46,10 +41,7 @@ function About({ changeGithubModeStatus, githubMode }: Props) {
           </DrawerBody>
 
           <DrawerFooter>
-            <AboutModeInfo
-              changeGithubModeStatus={changeGithubModeStatus}
-              githubMode={githubMode}
-            />
+            <AboutModeInfo changeGithubModeStatus={changeGithubModeStatus} />
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

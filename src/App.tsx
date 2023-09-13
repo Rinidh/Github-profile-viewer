@@ -3,12 +3,13 @@ import { Box, ColorModeProvider, Grid, GridItem, Show } from "@chakra-ui/react";
 import Header from "./components/Header";
 import "./App.css";
 import Form from "./components/Form";
-import { createContext, useState } from "react";
+import { useState } from "react";
 import Blank from "./components/Blank";
 import "./App.css";
 import LeftPanel from "./components/LeftPanel";
 import { useUsers } from "./hooks/useUsers";
 import UserProfileContainer from "./components/UserProfileContainer";
+import { GithubModeContext } from "./components/GithubModeContext";
 
 interface UserQuery {
   //add more props here that hold user's search-query
@@ -17,17 +18,12 @@ interface UserQuery {
 
 function App() {
   const [userQuery, setUserQuery] = useState<UserQuery>({} as UserQuery);
+  const [githubMode, setGithubMode] = useState(false);
 
-  //use custom variables to hold state of githubMode, instead of useState to prevent "re-render"
-  let githubMode = false;
-  const changeGithubModeStatus = () => {
-    githubMode = !githubMode;
-    console.log(githubMode);
-  };
-
-  const GithubModeContext = createContext(githubMode);
-
-  const { user, isLoading, error, dataSet } = useUsers(userQuery.searchText);
+  const { user, isLoading, error, dataSet } = useUsers(
+    userQuery.searchText,
+    githubMode
+  );
 
   const mainContent = userQuery.searchText ? (
     <UserProfileContainer
@@ -43,9 +39,7 @@ function App() {
   return (
     <ColorModeProvider /* to enable using useColorMode() hook. The hook works even though you don't put this */
     >
-      <GithubModeContext.Provider
-        value={githubMode} /*useContext not working??? inside */
-      >
+      <GithubModeContext.Provider value={githubMode}>
         <Grid
           templateAreas={{
             base: `"header" "main" "footer"`,
@@ -67,8 +61,7 @@ function App() {
               onSearch={(searchInputText) =>
                 setUserQuery({ ...userQuery, searchText: searchInputText })
               }
-              onChangeGithubModeStatus={() => changeGithubModeStatus()}
-              githubMode={githubMode} //had to pass this down via props coz useContext() is not working at About.tsx
+              onChangeGithubModeStatus={() => setGithubMode(!githubMode)}
             />
           </GridItem>
           <Show above="lg" /* to show at size lg and above */>
