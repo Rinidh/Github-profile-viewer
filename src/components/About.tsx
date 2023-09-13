@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Drawer,
   DrawerBody,
@@ -7,19 +6,12 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  Switch,
   Text,
-  useColorMode,
   useDisclosure,
 } from "@chakra-ui/react";
 import { BsQuestionOctagonFill } from "react-icons/bs";
-import styled from "styled-components";
+import AboutModeInfo from "./AboutModeInfo";
 //import { useContext } from "react";
-
-const StyledInlineHeading = styled.p`
-  display: inline-block;
-  font-size: 25px;
-`; //used this coz the <Text> comp of Chakra has unchangeable display: block style, yet inline-block is needed
 
 interface Props {
   changeGithubModeStatus: () => void;
@@ -28,7 +20,6 @@ interface Props {
 
 function About({ changeGithubModeStatus, githubMode }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { colorMode } = useColorMode();
 
   // const githubModeContext = useContext(GithubModeContext); ???
   // console.log(githubModeContext); //"unknown" ???
@@ -55,30 +46,10 @@ function About({ changeGithubModeStatus, githubMode }: Props) {
           </DrawerBody>
 
           <DrawerFooter>
-            <Box
-              bg={colorMode === "light" ? "#ffcdde" : "#710d0d"}
-              borderRadius={20}
-              padding={3}
-            >
-              <Text fontSize={20} marginBottom={10}>
-                You are currently running this app in DEMONSTRATION MODE. Any
-                search will only return this project's owner's (Rinidh's) github
-                info only
-              </Text>
-
-              <Box width={"190px"}>
-                <StyledInlineHeading>
-                  Activate Github Searches
-                </StyledInlineHeading>
-              </Box>
-              <Switch
-                colorScheme="red"
-                size="md"
-                float={"right"}
-                marginTop={-12} //negative values for positioning
-                onChange={changeGithubModeStatus}
-              />
-            </Box>
+            <AboutModeInfo
+              changeGithubModeStatus={changeGithubModeStatus}
+              githubMode={githubMode}
+            />
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

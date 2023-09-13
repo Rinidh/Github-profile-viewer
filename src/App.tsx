@@ -43,7 +43,9 @@ function App() {
   return (
     <ColorModeProvider /* to enable using useColorMode() hook. The hook works even though you don't put this */
     >
-      <GithubModeContext.Provider value={githubMode}>
+      <GithubModeContext.Provider
+        value={githubMode} /*useContext not working??? inside */
+      >
         <Grid
           templateAreas={{
             base: `"header" "main" "footer"`,
