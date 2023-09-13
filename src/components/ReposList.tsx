@@ -5,10 +5,11 @@ import NoRepos from "./NoRepos";
 
 interface Props {
   searchText: string;
+  githubMode: boolean;
 }
 
-const ReposList = ({ searchText }: Props) => {
-  const { repos } = useRepos(searchText);
+const ReposList = ({ searchText, githubMode }: Props) => {
+  const { repos } = useRepos(searchText, githubMode);
 
   const randomNumber = () => {
     return Math.random() * 100;

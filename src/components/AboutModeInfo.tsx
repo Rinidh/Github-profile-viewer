@@ -18,6 +18,7 @@ const AboutModeInfo = ({ changeGithubModeStatus }: Props) => {
 
   const githubModeContext = useContext(GithubModeContext);
   const [githubModeStatus, setGithubModeStatus] = useState(githubModeContext);
+
   console.log(githubModeStatus, githubModeContext);
 
   const onToggle = () => {
@@ -63,7 +64,7 @@ const AboutModeInfo = ({ changeGithubModeStatus }: Props) => {
         float={"right"}
         marginTop={-12} //negative values for positioning
         onChange={onToggle}
-        //isChecked={githubMode}
+        isChecked={githubModeStatus}
       />
     </Box>
   );

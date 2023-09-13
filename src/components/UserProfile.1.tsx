@@ -11,20 +11,12 @@ import {
   Text,
   Skeleton,
 } from "@chakra-ui/react";
-import { User } from "../hooks/useUsers";
 import { BsLink45Deg } from "react-icons/bs";
 import { Divider } from "./Divider";
-import "../userGrid.css";
 import { GithubModeContext } from "./GithubModeContext";
-import { useContext } from "react";
-import demoModeProfileImg from "../assets/demo-mode-profile.png";
+import { Props } from "./UserProfile";
 
-interface Props {
-  user: User;
-  isLoading: boolean;
-}
-
-function UserProfile({ user, isLoading }: Props) {
+export function UserProfile({ user, isLoading }: Props) {
   const githubMode = useContext(GithubModeContext);
 
   const created_at_date = new Date(user.created_at);
@@ -32,8 +24,6 @@ function UserProfile({ user, isLoading }: Props) {
   const fadeDuration = 0.5;
 
   const rowSpanForBio = user.bio?.length > 50 ? 2 : 1;
-
-  const profileImgSrc = githubMode ? user.avatar_url : demoModeProfileImg;
 
   return (
     <Grid
@@ -56,7 +46,7 @@ function UserProfile({ user, isLoading }: Props) {
           >
             <Link href={user.html_url} isExternal>
               <Image
-                src={profileImgSrc}
+                src={user.avatar_url}
                 boxSize={{ base: 250, lg: 300 }}
                 borderRadius={100}
                 border={"1px solid black"}
@@ -196,5 +186,3 @@ function UserProfile({ user, isLoading }: Props) {
     </Grid>
   );
 }
-
-export default UserProfile;

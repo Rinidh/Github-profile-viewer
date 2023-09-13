@@ -9,6 +9,7 @@ interface Props {
   isLoading: boolean;
   searchText: string;
   error: string;
+  githubMode: boolean;
 }
 
 const UserProfileContainer = ({
@@ -16,6 +17,7 @@ const UserProfileContainer = ({
   isLoading,
   searchText,
   error,
+  githubMode,
 }: Props) => {
   if (error) {
     switch (error) {
@@ -30,7 +32,14 @@ const UserProfileContainer = ({
     }
   }
 
-  return <InfoTabs user={user} isLoading={isLoading} searchText={searchText} />;
+  return (
+    <InfoTabs
+      user={user}
+      isLoading={isLoading}
+      searchText={searchText}
+      githubMode={githubMode}
+    />
+  );
 };
 
 export default UserProfileContainer;

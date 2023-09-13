@@ -6,17 +6,18 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import UserProfile from "./UserProfile";
 import ReposList from "./ReposList";
 import { User } from "../hooks/useUsers";
+import UserProfile from "./UserProfile";
 
 interface Props {
   user: User;
   isLoading: boolean;
   searchText: string;
+  githubMode: boolean;
 }
 
-function InfoTabs({ user, isLoading, searchText }: Props) {
+function InfoTabs({ user, isLoading, searchText, githubMode }: Props) {
   //usually you should declare a state var here, to see if the user is at the profile tab or repos tab, and only render the repos tab when the user clicks on it
 
   return (
@@ -31,7 +32,7 @@ function InfoTabs({ user, isLoading, searchText }: Props) {
           <UserProfile user={user} isLoading={isLoading} />
         </TabPanel>
         <TabPanel>
-          <ReposList searchText={searchText} />
+          <ReposList searchText={searchText} githubMode={githubMode} />
         </TabPanel>
       </TabPanels>
     </Tabs>

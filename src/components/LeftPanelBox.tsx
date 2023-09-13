@@ -18,7 +18,7 @@ interface Props {
 const LeftPanelBox = ({ avatarImg, name, isActive, onBoxClick }: Props) => {
   const { colorMode } = useColorMode();
 
-  const leftPanelBackground = colorMode === "light" ? "gray.100" : "gray.700";
+  const leftPanelBackground = colorMode === "light" ? "gray.100" : "gray.400";
 
   const border = isActive ? "4px solid green" : "";
 

@@ -31,6 +31,7 @@ function App() {
       isLoading={isLoading}
       searchText={userQuery.searchText}
       error={error}
+      githubMode={githubMode}
     />
   ) : (
     <Blank />

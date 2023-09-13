@@ -37,7 +37,7 @@ Skeleton startColor='pink.500' endColor='orange.500'
 
 Put the skeletons everywhere with fade
 
-handle click
+handle click & useUser
 
 
 EXTRAS (CAN USE IN OTHER PROJECTS):
