@@ -19,11 +19,11 @@ import "../stylings/Header.css";
 
 interface Props {
   onSearch: (searchText: string) => void;
+  onChangeGithubModeStatus: () => void;
   githubMode: boolean;
-  onActivateGithubMode: () => void;
 }
 
-const Header = ({ onSearch, githubMode, onActivateGithubMode }: Props) => {
+const Header = ({ onSearch, onChangeGithubModeStatus, githubMode }: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const logoColor = colorMode === "light" ? logo : darkLogo;
@@ -52,8 +52,8 @@ const Header = ({ onSearch, githubMode, onActivateGithubMode }: Props) => {
         </Box>
         <HStack alignItems={"center"}>
           <About
+            changeGithubModeStatus={onChangeGithubModeStatus}
             githubMode={githubMode}
-            onActivateGithubMode={onActivateGithubMode}
           />
           <BsLightbulbFill />
           <Switch

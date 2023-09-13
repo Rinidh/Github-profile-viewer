@@ -17,7 +17,13 @@ interface UserQuery {
 
 function App() {
   const [userQuery, setUserQuery] = useState<UserQuery>({} as UserQuery);
-  const [githubMode, setGithubMode] = useState(false);
+
+  //use custom variables to hold state of githubMode, instead of useState to prevent "re-render"
+  let githubMode = false;
+  const changeGithubModeStatus = () => {
+    githubMode = !githubMode;
+    console.log(githubMode);
+  };
 
   const GithubModeContext = createContext(githubMode);
 
@@ -59,8 +65,8 @@ function App() {
               onSearch={(searchInputText) =>
                 setUserQuery({ ...userQuery, searchText: searchInputText })
               }
-              githubMode={githubMode}
-              onActivateGithubMode={() => setGithubMode(true)}
+              onChangeGithubModeStatus={() => changeGithubModeStatus()}
+              githubMode={githubMode} //had to pass this down via props coz useContext() is not working at About.tsx
             />
           </GridItem>
           <Show above="lg" /* to show at size lg and above */>
