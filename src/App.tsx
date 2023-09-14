@@ -18,7 +18,7 @@ interface UserQuery {
 
 /*
 user-name may be null for someone at github, but login-name is always present. In fact the searchText 
-sent to github rest api is interpreted as a login-name and not a user-name, eg to get the info about Chris at github,
+sent to github rest api is interpreted as a login-name and not a user-name, eg to get the info about Chris Bailey at github,
 rather search for his github login-name: "node", which will return his info
 */
 function App() {
