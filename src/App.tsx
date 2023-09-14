@@ -16,6 +16,11 @@ interface UserQuery {
   searchText: string;
 }
 
+/*
+user-name may be null for someone at github, but login-name is always present. In fact the searchText 
+sent to github rest api is interpreted as a login-name and not a user-name, eg to get the info about Chris at github,
+rather search for his github login-name: "node", which will return his info
+*/
 function App() {
   const [userQuery, setUserQuery] = useState<UserQuery>({} as UserQuery);
   const [githubMode, setGithubMode] = useState(false);
@@ -71,7 +76,7 @@ function App() {
               <LeftPanel
                 dataSet={dataSet}
                 showHeading={Boolean(userQuery.searchText)} //only display left panel heading when a user is found
-                fetchedUserName={user.name}
+                fetchedUserName={user.login} //holds the last fetched user's login-name (user-name may be null at github, but login name is always present)
                 onLeftPanelBoxClick={(name) =>
                   setUserQuery({ ...userQuery, searchText: name })
                 }

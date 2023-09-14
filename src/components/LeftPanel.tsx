@@ -13,6 +13,7 @@ interface Props {
 
 interface FetchedUsersList {
   name: string;
+  login: string;
   avatarImg: string;
 }
 
@@ -28,12 +29,14 @@ const LeftPanel = ({
   dataSet.forEach((user) => {
     if (
       !fetchedUsersList.includes({
-        name: user.name || user.login, //pass user.login if user.name is null
+        name: user.name, //pass user.login if user.name is null
+        login: user.login,
         avatarImg: user.avatar_url,
       })
     ) {
       fetchedUsersList.push({
-        name: user.name || user.login,
+        name: user.name,
+        login: user.login,
         avatarImg: user.avatar_url,
       }); //name is set to the login-name at github if there is no user name eg for "jeetd"
     }
@@ -43,9 +46,9 @@ const LeftPanel = ({
     setActiveBox(fetchedUserName);
   }, [fetchedUserName]);
 
-  const handleBoxClick = (name: string) => {
-    setActiveBox(name);
-    onLeftPanelBoxClick(name);
+  const handleBoxClick = (searchAgainName: string) => {
+    setActiveBox(searchAgainName);
+    onLeftPanelBoxClick(searchAgainName);
   };
 
   return (
@@ -66,11 +69,11 @@ const LeftPanel = ({
       >
         {fetchedUsersList.map((userObj) => (
           <LeftPanelBox
-            key={userObj.name}
-            name={userObj.name}
+            key={userObj.login}
+            name={userObj.name || userObj.login}
             avatarImg={userObj.avatarImg}
-            onBoxClick={() => handleBoxClick(userObj.name)}
-            isActive={userObj.name == activeBox}
+            onBoxClick={() => handleBoxClick(userObj.login)}
+            isActive={userObj.login == activeBox}
           />
         ))}
       </Stack>
