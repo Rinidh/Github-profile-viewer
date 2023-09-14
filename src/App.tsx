@@ -69,7 +69,8 @@ function App() {
             <GridItem area={"nav"}>
               <LeftPanel
                 dataSet={dataSet}
-                showWhen={Boolean(userQuery.searchText)} //only display left panel heading when a user is found
+                showHeading={Boolean(userQuery.searchText)} //only display left panel heading when a user is found
+                fetchedUserName={user.name}
               />
             </GridItem>
           </Show>

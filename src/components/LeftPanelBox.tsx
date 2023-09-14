@@ -26,6 +26,8 @@ const LeftPanelBox = ({ avatarImg, name, isActive, onBoxClick }: Props) => {
     onBoxClick(name);
   };
 
+  console.log(isActive);
+
   return (
     <Flex
       direction={"row"}
@@ -44,8 +46,7 @@ const LeftPanelBox = ({ avatarImg, name, isActive, onBoxClick }: Props) => {
         },
       }}
       onClick={(event: React.MouseEvent<HTMLDivElement>) => {
-        console.log(event); //SyntheticBaseEvent by React. Note the type of event this is: React.MouseEvent<HTMLDivElement>
-
+        //console.log(event); //SyntheticBaseEvent by React. Note the type of event this is: React.MouseEvent<HTMLDivElement>
         handleClick(name); //what to do on click
       }}
     >

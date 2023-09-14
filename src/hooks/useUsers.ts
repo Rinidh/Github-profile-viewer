@@ -53,8 +53,6 @@ function useUsers(searchText:string, githubMode: boolean) {
           signal: controller.signal,
         })
         .then((res) => {
-          console.log(res.data);
-          
           setUser(res.data);        
           setLoading(false)
           setDataSet(new Set([...dataSet, res.data]))
