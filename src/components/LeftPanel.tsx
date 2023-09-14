@@ -8,6 +8,7 @@ interface Props {
   dataSet: Set<User>; //dataSet is of type: a js set holding user-type objects
   showHeading: boolean;
   fetchedUserName: string;
+  onLeftPanelBoxClick: (name: string) => void;
 }
 
 interface FetchedUsersList {
@@ -15,19 +16,24 @@ interface FetchedUsersList {
   avatarImg: string;
 }
 
-const LeftPanel = ({ dataSet, showHeading, fetchedUserName }: Props) => {
+const LeftPanel = ({
+  dataSet,
+  showHeading,
+  fetchedUserName,
+  onLeftPanelBoxClick,
+}: Props) => {
   const [activeBox, setActiveBox] = useState("");
 
   let fetchedUsersList: FetchedUsersList[] = [];
   dataSet.forEach((user) => {
     if (
       !fetchedUsersList.includes({
-        name: user.name, //pass user.login if user.name is null
+        name: user.name || user.login, //pass user.login if user.name is null
         avatarImg: user.avatar_url,
       })
     ) {
       fetchedUsersList.push({
-        name: user.name,
+        name: user.name || user.login,
         avatarImg: user.avatar_url,
       }); //name is set to the login-name at github if there is no user name eg for "jeetd"
     }
@@ -36,6 +42,11 @@ const LeftPanel = ({ dataSet, showHeading, fetchedUserName }: Props) => {
   useEffect(() => {
     setActiveBox(fetchedUserName);
   }, [fetchedUserName]);
+
+  const handleBoxClick = (name: string) => {
+    setActiveBox(name);
+    onLeftPanelBoxClick(name);
+  };
 
   return (
     <div className="position-fixed">
@@ -58,7 +69,7 @@ const LeftPanel = ({ dataSet, showHeading, fetchedUserName }: Props) => {
             key={userObj.name}
             name={userObj.name}
             avatarImg={userObj.avatarImg}
-            onBoxClick={(name) => setActiveBox(name)}
+            onBoxClick={() => handleBoxClick(userObj.name)}
             isActive={userObj.name == activeBox}
           />
         ))}

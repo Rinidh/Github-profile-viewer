@@ -59,8 +59,9 @@ function App() {
         >
           <GridItem area={"header"}>
             <Header
-              onSearch={(searchInputText) =>
-                setUserQuery({ ...userQuery, searchText: searchInputText })
+              onSearch={
+                (searchInputText) =>
+                  setUserQuery({ ...userQuery, searchText: searchInputText }) //spreading ...userQuery is not even needed as userQuery only has one key, searchText, hence setUserQuery({ searchText: searchInputText }) also works
               }
               onChangeGithubModeStatus={() => setGithubMode(!githubMode)}
             />
@@ -71,6 +72,9 @@ function App() {
                 dataSet={dataSet}
                 showHeading={Boolean(userQuery.searchText)} //only display left panel heading when a user is found
                 fetchedUserName={user.name}
+                onLeftPanelBoxClick={(name) =>
+                  setUserQuery({ ...userQuery, searchText: name })
+                }
               />
             </GridItem>
           </Show>

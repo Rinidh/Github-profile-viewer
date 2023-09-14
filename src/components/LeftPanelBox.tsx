@@ -12,7 +12,7 @@ interface Props {
   avatarImg: string | null;
   name: string;
   isActive: boolean;
-  onBoxClick: (userName: string) => void;
+  onBoxClick: () => void;
 }
 
 const LeftPanelBox = ({ avatarImg, name, isActive, onBoxClick }: Props) => {
@@ -21,12 +21,6 @@ const LeftPanelBox = ({ avatarImg, name, isActive, onBoxClick }: Props) => {
   const leftPanelBackground = colorMode === "light" ? "gray.100" : "gray.400";
 
   const border = isActive ? "4px solid green" : "";
-
-  const handleClick = (name: string) => {
-    onBoxClick(name);
-  };
-
-  console.log(isActive);
 
   return (
     <Flex
@@ -46,8 +40,9 @@ const LeftPanelBox = ({ avatarImg, name, isActive, onBoxClick }: Props) => {
         },
       }}
       onClick={(event: React.MouseEvent<HTMLDivElement>) => {
+        //event param not needed
         //console.log(event); //SyntheticBaseEvent by React. Note the type of event this is: React.MouseEvent<HTMLDivElement>
-        handleClick(name); //what to do on click
+        onBoxClick();
       }}
     >
       <Avatar
