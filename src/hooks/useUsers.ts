@@ -39,6 +39,12 @@ function useUsers(searchText:string, githubMode: boolean) {
     created_at: "2023-03-19T09:40:12Z",
   };
 
+  function checkDuplicate(newUser: User, dataSet: Set<User>) {
+    const userObjects = Array.from(dataSet);
+    const duplicateUser = userObjects.find((user)=>user.login === newUser.login);
+    return duplicateUser;
+  }
+
   useEffect(() => {    
     if(searchText ) { //only run the code below if the user searched sth
       if(githubMode) {
@@ -53,10 +59,20 @@ function useUsers(searchText:string, githubMode: boolean) {
           signal: controller.signal,
         })
         .then((res) => {
-          setUser(res.data);        
+          const newData: User = res.data
+          setUser(newData);        
           setLoading(false)
-          setDataSet(new Set([...dataSet, res.data]))
-        })
+          
+          /*
+          sets by default don't add duplicate values, but for a set of objects, it can.
+          This is coz comparing objs is comparing their references, not their values
+          console.log(obj1 === obj2) returns "false" even if they have same props and values, unless obj2 was made by
+          referencing to obj1 (const obj2 = obj1), then console.log() will return "true"
+          */
+          if(!(checkDuplicate(newData, dataSet))) {
+            setDataSet(new Set([...dataSet, res.data]))
+          }
+        }) //no need to use mulitple .then() if the code in .then() is not asynchronous
         .catch((error) => {
           switch (error.message) {
             case "Failed to fetch":

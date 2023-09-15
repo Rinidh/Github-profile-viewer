@@ -37,6 +37,11 @@ Skeleton startColor='pink.500' endColor='orange.500'
 
 Put the skeletons everywhere with fade
 
+filter the res.data object to be of type User:
+  // const keysToInclude = Object.keys(demoModeUser)
+  // console.log(keysToInclude);        
+  // const userData: User = filterObject(res.data, keysToInclude)
+
 
 
 EXTRAS (CAN USE IN OTHER PROJECTS):
