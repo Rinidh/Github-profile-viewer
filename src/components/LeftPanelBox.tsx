@@ -20,7 +20,11 @@ const LeftPanelBox = ({ avatarImg, name, isActive, onBoxClick }: Props) => {
 
   const leftPanelBackground = colorMode === "light" ? "gray.100" : "gray.400";
 
-  const border = isActive ? "4px solid green" : "";
+  const border = isActive
+    ? colorMode === "light"
+      ? "4px solid #2bc170"
+      : "4px solid #2bc170" //16be51
+    : "";
 
   return (
     <Flex
@@ -35,7 +39,7 @@ const LeftPanelBox = ({ avatarImg, name, isActive, onBoxClick }: Props) => {
         //sx prop to add custom styles directly, without creating another css file
         transition: "all 0.2s ease-in-out",
         "&:hover": {
-          transform: "scale(1.05)", // Increase the size by 10% on hover
+          transform: "scale(1.04)", // Increase the size by 10% on hover
           boxShadow: "xl",
         },
       }}

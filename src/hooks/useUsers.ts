@@ -49,7 +49,7 @@ function useUsers(searchText:string, githubMode: boolean) {
     if(searchText ) { //only run the code below if the user searched sth
       if(githubMode) {
         const octokit = new Octokit({
-          auth: "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",
+          auth: "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",
         });
         setLoading(true)
   

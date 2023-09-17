@@ -1,7 +1,7 @@
 import { Octokit } from "@octokit/rest";
 import { useEffect, useState } from "react";
 import { filterObject } from "../filterObject";
-import { demoRepos } from "../components/data/demoRepos";
+import { demoRepos } from "../data/demoRepos";
 
 export interface Repo {
     id: number;
@@ -37,7 +37,7 @@ function useRepos(searchedUser:string, githubMode: boolean) {
 
   useEffect(() => {
     const octokit = new Octokit({
-      auth: "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",
+      auth: "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",
     });
 
     if(searchedUser) {
