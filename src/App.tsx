@@ -10,6 +10,7 @@ import LeftPanel from "./components/LeftPanel";
 import { useUsers } from "./hooks/useUsers";
 import UserProfileContainer from "./components/UserProfileContainer";
 import { GithubModeContext } from "./components/GithubModeContext";
+import Footer from "./components/Footer";
 
 interface UserQuery {
   //add more props here that hold user's search-query
@@ -54,8 +55,8 @@ function App() {
                   "nav footer"`,
           }}
           gridTemplateRows={{
-            base: "100px 1fr 100px",
-            lg: "100px 1fr 100px",
+            base: "100px 1fr 200px",
+            lg: "100px 1fr 295px",
           }}
           gridTemplateColumns={{
             base: "1fr",
@@ -89,7 +90,7 @@ function App() {
             </Box>
           </GridItem>
           <GridItem pl="2" bg="blue.300" area={"footer"}>
-            <Form />
+            <Footer />
           </GridItem>
         </Grid>
       </GithubModeContext.Provider>
