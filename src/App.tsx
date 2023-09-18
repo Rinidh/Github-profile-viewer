@@ -55,7 +55,7 @@ function App() {
                   "nav footer"`,
           }}
           gridTemplateRows={{
-            base: "100px 1fr 200px",
+            base: "100px 1fr 295px",
             lg: "100px 1fr 295px",
           }}
           gridTemplateColumns={{
@@ -89,7 +89,7 @@ function App() {
               {mainContent}
             </Box>
           </GridItem>
-          <GridItem pl="2" bg="blue.300" area={"footer"}>
+          <GridItem pl="2" area={"footer"}>
             <Footer />
           </GridItem>
         </Grid>
