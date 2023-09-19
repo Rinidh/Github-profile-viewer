@@ -1,7 +1,6 @@
 import {
   Box,
   Center,
-  ColorModeProvider,
   Flex,
   Link,
   SimpleGrid,
@@ -9,6 +8,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { FaCopyright } from "react-icons/fa";
+import Form from "./Form";
 
 const Footer = () => {
   const { colorMode } = useColorMode();
@@ -17,10 +17,10 @@ const Footer = () => {
 
   return (
     // Passing `columns={[1, null, 2]}` and `columns={{sm: 1, md: 2}}` will have the same effect.
-    <Box bg={backGround}>
-      <SimpleGrid columns={{ sm: 1, lg: 2 }} spacing="3px" height={"130px"}>
+    <Box bg={backGround} color={textColor}>
+      <SimpleGrid columns={{ sm: 1, lg: 2 }} spacing="3px" height={"180px"}>
         <Box height={"100%"}>
-          <Text paddingTop={3} color={textColor} paddingLeft={5}>
+          <Text padding={5}>
             This App was made as a practice for testing react coding skills,
             along with Chakra UI and other libraries like react-hook-forms,
             styled-components, octokit etc. Please help improve dummy app and
@@ -29,7 +29,9 @@ const Footer = () => {
             see the reaction of the app
           </Text>
         </Box>
-        <Box height={"100%"}>b</Box>
+        <Center height={"100%"}>
+          <Form />
+        </Center>
       </SimpleGrid>
 
       <Box height="80px" textAlign={"center"}>

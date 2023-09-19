@@ -1,58 +1,58 @@
 import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogOverlay,
   Button,
-  Input,
-  InputGroup,
-  InputLeftElement,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useRef } from "react";
-import { BsSearch } from "react-icons/bs";
-import SearchInput from "./SearchInput";
+import FeedbackInputs from "./FeedbackInputs";
+import { useState } from "react";
 
 function Form() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef(null);
 
   return (
     <>
-      <Button colorScheme="blue" onClick={onOpen}>
-        Form??
+      <Button colorScheme="green" onClick={onOpen}>
+        Send us a feedback
       </Button>
 
-      <AlertDialog //one can also use the <Modal> comp, AlertDialog is built on top of Modal comp
+      <Modal
         isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
         onClose={onClose}
         motionPreset="slideInBottom"
-        size={"xl"}
+        size="2xl"
       >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Fill in the user name of a github account
-            </AlertDialogHeader>
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader fontSize="lg" fontWeight="bold">
+              Please fill in these fields
+            </ModalHeader>
 
-            <AlertDialogBody>
-              <SearchInput onSearch={(searchText) => console.log(searchText)} />
-            </AlertDialogBody>
+            <ModalBody>
+              <FeedbackInputs
+                isSubmitted={isSubmitted}
+                onSubmitForm={(originalState) => setIsSubmitted(originalState)}
+              />
+            </ModalBody>
 
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                Cancel
+            <ModalFooter>
+              <Button onClick={onClose}>Close</Button>
+              <Button
+                colorScheme="green"
+                onClick={() => setIsSubmitted(true)}
+                ml={3}
+              >
+                Submit
               </Button>
-              <Button colorScheme="blue" onClick={onClose} ml={3}>
-                Find
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
     </>
   );
 }
