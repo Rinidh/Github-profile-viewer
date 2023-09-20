@@ -1,40 +1,28 @@
 import { useEffect, useRef } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 
 interface Props {
+  handleFormSubmit: (data: FieldValues) => void;
   isSubmitted: boolean;
-  onSubmitForm: (originalState: boolean) => void;
+  formProps: 
 }
 
-const FeedbackInputs = ({ isSubmitted, onSubmitForm }: Props) => {
-  const { register, handleSubmit } = useForm();
+const FeedbackInputs = ({ handleFormSubmit, isSubmitted }: Props) => {
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  // const handleFormSubmit = (data: FieldValues) => {
-  //   console.log(data);
-  // };
-
-  // const onSubmit = (e: FormEvent) => {
-  //   e.preventDefault();
-
-  //   handleSubmit((data) => console.log(data));
-  // };
-
   useEffect(() => {
     if (formRef.current && isSubmitted) {
-      formRef.current.submit(); //submits the form programmatically
-      onSubmitForm(false);
+      console.log("form submits");
+
+      handleSubmit((data) => handleFormSubmit(data));
+      //formRef.current.submit(); //submits the form programmatically
+      //onSubmitForm(false); //to set the form back to un-submitted state in Form.tsx
     }
   }, [isSubmitted]);
 
   return (
     <>
-      <form ref={formRef} onSubmit={handleSubmit((data) => console.log(data))}>
-        <label htmlFor="n">n</label>
-        <input id="n" type="text" {...register("name")} />
-        <button type="submit">Submit2</button>
-      </form>
     </>
   );
 };

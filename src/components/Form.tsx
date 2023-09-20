@@ -8,12 +8,17 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import FeedbackInputs from "./FeedbackInputs";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 function Form() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  //const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const { register, handleSubmit } = useForm();
+
+  // const handleFormSubmit = (data: FieldValues) => {
+  //   console.log(data);
+  // };
 
   return (
     <>
@@ -34,17 +39,18 @@ function Form() {
             </ModalHeader>
 
             <ModalBody>
-              <FeedbackInputs
-                isSubmitted={isSubmitted}
-                onSubmitForm={(originalState) => setIsSubmitted(originalState)}
-              />
+              <form>
+                <label htmlFor="n">Name</label>
+                <br />
+                <input id="n" {...register("name")} />
+              </form>
             </ModalBody>
 
             <ModalFooter>
-              <Button onClick={onClose}>Close</Button>
+              <Button onClick={onClose}>Cancel</Button>
               <Button
                 colorScheme="green"
-                onClick={() => setIsSubmitted(true)}
+                onClick={handleSubmit((data) => console.log(data))}
                 ml={3}
               >
                 Submit
@@ -58,3 +64,12 @@ function Form() {
 }
 
 export default Form;
+
+/*
+<FeedbackInputs
+  handleFormSubmit={(data) => handleFormSubmit(data)}
+  isSubmitted={isSubmitted}
+  formProps={[...register("name")]}
+/>
+
+*/
