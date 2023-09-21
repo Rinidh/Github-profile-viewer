@@ -17,12 +17,35 @@ import {
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 function Form() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { register, handleSubmit, getValues } = useForm();
+  //creating the schema and type. And using hook form
+  const schema = z.object({
+    name: z
+      .string()
+      .min(2, { message: "Name should be atleast 2 characters" })
+      .max(20, { message: "Name is too long" }),
+    age: z
+      .number({ invalid_type_error: "Please fill a number" })
+      .min(8, { message: "You are too young to send feedback" }),
+    github_user_id: z.string(),
+    reason_complaint: z.string(), //find how to also put "or null" as this field can be null
+    reason_appreciation: z.string(),
+    reason_other: z.string(),
+    reason_other_description: z.string(),
+    branch: z.string(), //can be specified of value
+  });
+  type FormData = z.infer<typeof schema>;
+  const { register, handleSubmit, getValues, formState } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  const { errors, isValid } = formState;
 
   const handleFormSubmit = () => {
     //handle some submit actions here
@@ -74,12 +97,15 @@ function Form() {
                 <FormLabel>Name</FormLabel>
                 <Input {...register("name")} marginBottom={4} />
 
-                <FormLabel>Email</FormLabel>
-                <Input {...register("email")} marginBottom={4} />
+                <FormLabel>Age</FormLabel>
+                <Input
+                  {...register("age", { valueAsNumber: true })}
+                  marginBottom={4}
+                />
 
                 <FormControl isRequired>
                   <FormLabel>Github User ID</FormLabel>
-                  <Input {...register("github-user-id")} marginBottom={4} />
+                  <Input {...register("github_user_id")} marginBottom={4} />
                 </FormControl>
 
                 <FormLabel>Reason for feedback</FormLabel>
@@ -119,7 +145,10 @@ function Form() {
                 />
 
                 <FormLabel>Github Branch</FormLabel>
-                <Select placeholder="Select github branch">
+                <Select
+                  placeholder="Select github branch"
+                  {...register("branch")}
+                >
                   <option>Master</option>
                   <option>withRouter</option>
                 </Select>
@@ -133,6 +162,7 @@ function Form() {
                 onClick={handleSubmit(handleFormSubmit)} //handleSubmit from react-hook-form
                 //handleSubmit( (data) => handleFormSubmit(data) ) is same as handleSubmit(handleFormSubmit)
                 ml={3}
+                isDisabled={!isValid}
               >
                 Submit
               </Button>
