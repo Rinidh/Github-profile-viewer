@@ -2,7 +2,7 @@ import { Box, ColorModeProvider, Grid, GridItem, Show } from "@chakra-ui/react";
 
 import Header from "./components/Header";
 import "./App.css";
-import Form from "./components/Form";
+import Form from "./components/Form.1";
 import { useState } from "react";
 import Blank from "./components/Blank";
 import "./App.css";
