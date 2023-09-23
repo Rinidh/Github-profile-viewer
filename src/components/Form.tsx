@@ -120,23 +120,17 @@ function Form() {
                 Your data won't get saved anywhere
               </FormHelperText>
 
-              <FormControl isInvalid={Boolean(errors.name)}>
+              <FormControl isInvalid={Boolean(errors.name)} marginBottom={4}>
                 <FormLabel>Name</FormLabel>
-                <Input {...register("name")} marginBottom={4} />
+                <Input {...register("name")} />
                 {errors.name && (
-                  <div>
-                    <FormErrorMessage>{errors.name.message}</FormErrorMessage>
-                    <p>demo</p>
-                  </div>
+                  <FormErrorMessage>{errors.name.message}</FormErrorMessage>
                 )}
               </FormControl>
 
-              <FormControl isInvalid={Boolean(errors.age)}>
+              <FormControl isInvalid={Boolean(errors.age)} marginBottom={4}>
                 <FormLabel>Age</FormLabel>
-                <Input
-                  {...register("age", { valueAsNumber: true })}
-                  marginBottom={4}
-                />
+                <Input {...register("age", { valueAsNumber: true })} />
                 {errors.age && (
                   <FormErrorMessage>{errors.age.message}</FormErrorMessage>
                 )}
@@ -145,9 +139,10 @@ function Form() {
               <FormControl
                 isRequired
                 isInvalid={Boolean(errors.github_user_id)}
+                marginBottom={4}
               >
                 <FormLabel>Github User ID</FormLabel>
-                <Input {...register("github_user_id")} marginBottom={4} />
+                <Input {...register("github_user_id")} />
                 {errors.github_user_id && (
                   <FormErrorMessage>
                     {errors.github_user_id.message}
@@ -227,7 +222,7 @@ function Form() {
             </FormControl>
           </ModalBody>
 
-          <ModalFooter>
+          <ModalFooter marginTop={"30px"}>
             <Button onClick={onClose}>Cancel</Button>
             <Button
               colorScheme="green"
