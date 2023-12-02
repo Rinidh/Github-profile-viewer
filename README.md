@@ -2,7 +2,7 @@
 
 This is a practice project.
 
-Before using the project in the web browser, make sure to add your github access token in the index.js file
+Before using the project in the web browser, make sure to add your github access token in the useUsers.ts and useRepos.ts files
 
 ## Rebuilt with React and Chakra UI
 
