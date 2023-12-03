@@ -1,0 +1,5 @@
+When I deployed this static site to Render, it deployed successfully, but failed to load when tried to view
+    This may be coz:
+      -I forget to build locally and then deployed
+      -Wrong settings at Render
+      -This is not a static website
